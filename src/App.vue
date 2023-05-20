@@ -1,10 +1,21 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <Topbar/>
+  <Home/>
   <router-view/>
 </template>
+
+<script>
+
+import Topbar from "@/components/Topbar";
+import Home from "@/views/Home";
+export default {
+  components:{
+    Home,
+    Topbar
+  }
+}
+
+</script>
 
 <style>
 #app {
