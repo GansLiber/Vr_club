@@ -9,11 +9,15 @@
           <p>Спорим понравится?</p>
         </div>
         <div class="buttons">
-          <button class="btn btn-primary">Хочу играть</button>
-          <button class="btn btn-secondary" @click="toggleSound">
-            Выключить звук
+          <button class="btn btn-primary" >Хочу играть</button>
+          <button class="btn btn-secondary" @click="handleSoundButtonClick">
+            <span v-if="isSoundOn">Выключить звук</span>
+            <span v-else>Включить звук</span>
             <img :src="soundIcon" alt="sound" class="logo-img">
           </button>
+          <audio ref="audioPlayer">
+            <source :src="music" type="audio/mpeg">
+          </audio>
         </div>
       </div>
     </div>
@@ -26,15 +30,23 @@ export default {
 
   data(){
     return{
-      isSoundOn: true,
-      soundIcon: require('@/assets/home/icons/sound.svg'),
-      muteIcon: require('@/assets/home/icons/mute.svg')
+      isSoundOn: false,
+      soundIcon: require('@/assets/home/icons/mute.svg'),
+      music: require('@/assets/music/relax.mp3'),
     }
   },
   methods:{
+    handleSoundButtonClick(){
+      this.toggleSound()
+      this.playMusic()
+    },
     toggleSound(){
-      this.isSoundOn=!this.isSoundOn;
+      this.isSoundOn=!this.isSoundOn
       this.soundIcon = this.isSoundOn ? require('@/assets/home/icons/sound.svg') : require('@/assets/home/icons/mute.svg')
+    },
+    playMusic() {
+      const audioElement = this.$refs.audioPlayer
+      this.isSoundOn ? audioElement.play() : audioElement.pause()
     }
   }
 }
@@ -49,7 +61,7 @@ export default {
   max-width: 95em;
   margin: 0 auto;
   padding: 0 1em;
-  display: flex; /* Добавили display: flex */
+  display: flex;
   align-items: center;
 }
 
@@ -93,22 +105,26 @@ export default {
 }
 
 .btn {
-  padding: 0.3em 1.3em;
+  padding: 0.3em 1em;
   border-radius: 30px;
   font-size: 1.5em;
   transition: background-color 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary {
   background-color: #f00;
   color: #fff;
-  justify-content: flex-end;
   /*margin-right: 3em;*/
 }
 
 .btn-secondary {
   background-color: #333;
   color: #fff;
+  width: 272px;
 }
 
 .btn-secondary>img{
