@@ -43,15 +43,26 @@ export default {
   right: 15px;
   top: 15px;
   cursor: pointer;
-  height: 60px;
 }
 
+
 .close:hover {
-  box-shadow: black;
+  animation: spin 1s;
+  transform: rotate(180deg);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }
 
 .close-img {
   height: 45px;
+  transition: transform 0.3s ease;
 }
 
 .content {

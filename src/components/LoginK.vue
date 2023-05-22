@@ -3,12 +3,12 @@
     <h2>Вход</h2>
     <form @submit.prevent='submitForm'>
       <InputK
-        v-model='login'
+        v-model.trim='login'
         type='text'
         name='login'
         placehold='Логин'></InputK>
       <InputK
-        v-model='password'
+        v-model.trim='password'
         type='password'
         name='password'
         placehold='Пароль'></InputK>
