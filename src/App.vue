@@ -1,15 +1,15 @@
 <template>
-  <Topbar/>
-  <Home/>
-  <router-view/>
+  <Topbar />
+  <router-view />
 </template>
 
 <script>
 
-import Topbar from "@/components/Topbar";
-import Home from "@/views/Home";
+import Topbar from '@/components/Topbar'
+import Home from '@/views/Home'
+
 export default {
-  components:{
+  components: {
     Home,
     Topbar
   }
