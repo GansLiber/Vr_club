@@ -49,10 +49,6 @@ export default {
   text-indent: 15px;
 }
 
-/*.inp::placeholder {*/
-/*  padding-left: 10px; !* Внутренний отступ слева *!*/
-/*}*/
-
 .form-group {
   margin-bottom: 1rem;
 }

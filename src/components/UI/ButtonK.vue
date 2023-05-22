@@ -1,17 +1,17 @@
 <template>
-  <button class="btn">
+  <button class='myBtn'>
     <slot></slot>
   </button>
 </template>
 
 <script>
 export default {
-  name: "ButtonK"
+  name: 'ButtonK'
 }
 </script>
 
 <style scoped>
-.btn {
+.myBtn {
   padding: 0.3em 1.7em;
   font-size: 1.5em;
   transition: background-color 0.3s ease;
@@ -20,19 +20,24 @@ export default {
   align-items: center;
   justify-content: center;
 
-  background-color: #f00;
+  background-color: #26B7E2;
   color: #fff;
 
   border: 4px solid #FFFFFF;
   border-radius: 25px;
 }
 
-.btn:hover {
+.myBtn:hover {
   background-color: #a20000;
   color: #fff;
 }
 
-.btn:active {
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+.myBtn:active {
+  box-sizing: border-box;
+
+  background: #26B7E2;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+
 }
 </style>

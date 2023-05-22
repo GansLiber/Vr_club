@@ -1,6 +1,6 @@
 <template>
   <div class='login-form'>
-    <h2>Login</h2>
+    <h2>Вход</h2>
     <form @submit.prevent='submitForm'>
       <InputK
         v-model='login'
@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  color: white;
+}
+
 .login-form {
   max-width: 300px;
   margin: 0 auto;

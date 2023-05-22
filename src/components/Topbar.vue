@@ -1,54 +1,54 @@
 <template>
-  <header class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
+  <header class='navbar navbar-expand-lg navbar-dark bg-dark'>
+    <div class='container'>
       <!-- Вкладки -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Цены</a>
+      <ul class='navbar-nav mr-auto'>
+        <li class='nav-item'>
+          <a class='nav-link' href='#'>Цены</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Акции</a>
+        <li class='nav-item'>
+          <a class='nav-link' href='#'>Акции</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Бронь</a>
+        <li class='nav-item'>
+          <a class='nav-link' href='#'>Бронь</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">О нас</a>
+        <li class='nav-item'>
+          <a class='nav-link' href='#'>О нас</a>
         </li>
       </ul>
 
       <!-- Логотип -->
-      <a class="navbar-brand" href="#">
-        <img src="@/assets/logo1.png" alt="Logo" class="logo-img">
-        <h2 class="logo-text">Three H Bucks</h2>
+      <a class='navbar-brand' href='#'>
+        <img src='@/assets/logo1.png' alt='Logo' class='logo-img'>
+        <h2 class='logo-text'>Three H Bucks</h2>
       </a>
 
       <!-- Личный кабинет и социальные сети -->
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <img src="@/assets/user.svg" alt="user" class="logo-img">
+      <ul class='navbar-nav ml-auto'>
+        <li class='nav-item'>
+          <a class='nav-link' href='#' @click='showDialog'>
+            <img src='@/assets/user.svg' alt='user' class='logo-img'>
             <span>Личный кабинет</span>
           </a>
         </li>
-        <li class="social-media">
-          <ul class="social-media-list">
-            <li class="social-media-item">
-              <a class="social-media-link" href="#">
-                <img src="@/assets/social_media/icon_vk.svg" alt="VK" class="social-media-img">
-                <i class="fab fa-facebook-f"></i>
+        <li class='social-media'>
+          <ul class='social-media-list'>
+            <li class='social-media-item'>
+              <a class='social-media-link' href='#'>
+                <img src='@/assets/header/social_media/icon_vk.svg' alt='VK' class='social-media-img'>
+                <i class='fab fa-facebook-f'></i>
               </a>
             </li>
-            <li class="social-media-item">
-              <a class="social-media-link" href="#">
-                <img src="@/assets/social_media/icon_telegram.svg" alt="Telegram" class="social-media-img">
-                <i class="fab fa-twitter"></i>
+            <li class='social-media-item'>
+              <a class='social-media-link' href='#'>
+                <img src='@/assets/header/social_media/icon_telegram.svg' alt='Telegram' class='social-media-img'>
+                <i class='fab fa-twitter'></i>
               </a>
             </li>
-            <li class="social-media-item">
-              <a class="social-media-link" href="#">
-                <img src="@/assets/social_media/icon_inst.svg" alt="Instagram" class="social-media-img">
-                <i class="fab fa-instagram"></i>
+            <li class='social-media-item'>
+              <a class='social-media-link' href='#'>
+                <img src='@/assets/header/social_media/icon_inst.svg' alt='Instagram' class='social-media-img'>
+                <i class='fab fa-instagram'></i>
               </a>
             </li>
           </ul>
@@ -56,10 +56,31 @@
       </ul>
     </div>
   </header>
+  <DialogWindowK v-model:show='dialogVisible'>
+    <LoginK />
+  </DialogWindowK>
 </template>
 <script>
+import LoginK from '@/components/LoginK'
+
 export default {
-  name: 'Topbar'
+  name: 'Topbar',
+
+  components: {
+    LoginK
+  },
+
+  data() {
+    return {
+      dialogVisible: false
+    }
+  },
+
+  methods: {
+    showDialog() {
+      this.dialogVisible = true
+    }
+  }
 }
 </script>
 <style scoped>
@@ -95,10 +116,11 @@ export default {
   color: #fff;
   font-weight: bold;
   transition: color 0.3s ease;
+  font-size: 20px;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #f00;
+  color: #26B7E2;
 }
 
 .navbar-nav.ml-auto .nav-link i {

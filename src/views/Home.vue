@@ -1,5 +1,4 @@
 <template>
-  <Login />
   <div class='deep_back'>
     <div class='main_home_screen'>
       <div class='text_button_block'>
@@ -11,7 +10,6 @@
         </div>
         <div class='buttons'>
           <ButtonK>Хочу играть</ButtonK>
-          <!--          <button class="btn btn-primary" >Хочу играть</button>-->
           <button class='btn btn-secondary' @click='handleSoundButtonClick'>
             <span v-if='isSoundOn'>Выключить звук</span>
             <span v-else>Включить звук</span>
@@ -112,6 +110,7 @@ export default {
   justify-content: space-around;
   gap: 1em;
 }
+
 
 .btn {
   padding: 0.3em 1.7em;
