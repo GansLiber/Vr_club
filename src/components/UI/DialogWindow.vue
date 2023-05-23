@@ -64,9 +64,7 @@ export default {
   border-radius: 25px;
   min-width: 300px;
   min-height: 50px;
-  width: 500px;
-  height: 400px;
-  padding: 20px;
+  padding: 50px;
 
   position: relative;
   display: flex;
