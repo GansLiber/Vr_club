@@ -56,18 +56,20 @@
       </ul>
     </div>
   </header>
-  <DialogWindowK v-model:show='dialogVisible'>
-    <LoginK />
-  </DialogWindowK>
+  <kurs-dialog-window v-model:show='dialogVisible'>
+    <kurs-login />
+  </kurs-dialog-window>
 </template>
 <script>
-import LoginK from '@/components/LoginK'
+import KursLogin from '@/components/Login'
+import KursDialogWindow from '@/components/UI/DialogWindow'
 
 export default {
-  name: 'Topbar',
+  name: 'kursTopbar',
 
   components: {
-    LoginK
+    KursDialogWindow,
+    KursLogin
   },
 
   data() {

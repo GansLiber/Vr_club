@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ButtonK'
+  name: 'kursButton'
 }
 </script>
 
@@ -36,7 +36,7 @@ export default {
   box-sizing: border-box;
 
   background: #26B7E2;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 25px;
 
 }

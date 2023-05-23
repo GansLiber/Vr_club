@@ -2,17 +2,17 @@
   <div class='login-form'>
     <h2>Вход</h2>
     <form @submit.prevent='submitForm'>
-      <InputK
+      <kursInput
         v-model.trim='login'
         type='text'
         name='login'
-        placehold='Логин'></InputK>
-      <InputK
+        placehold='Логин'></kursInput>
+      <kurs-input
         v-model.trim='password'
         type='password'
         name='password'
-        placehold='Пароль'></InputK>
-      <ButtonK>Войти</ButtonK>
+        placehold='Пароль'></kurs-input>
+      <kurs-button>Войти</kurs-button>
     </form>
   </div>
 </template>
@@ -20,8 +20,7 @@
 <script>
 
 export default {
-  name: 'LoginK',
-  components: {},
+  name: 'kursLogin',
   data() {
     return {
       login: '',
@@ -31,7 +30,7 @@ export default {
   methods: {
     submitForm() {
       // Ваша логика обработки отправки формы
-      console.log('Email:', this.email)
+      console.log('Login:', this.login)
       console.log('Password:', this.password)
 
       // Сбросить значения полей формы после отправки

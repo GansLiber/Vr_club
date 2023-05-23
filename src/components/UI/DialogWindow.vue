@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'DialogWindowK',
+  name: 'kursDialogWindow',
   props: {
     show: {
       type: Boolean,
@@ -43,22 +43,15 @@ export default {
   right: 15px;
   top: 15px;
   cursor: pointer;
+  transition: transform 0.4s ease;
+
 }
 
 
 .close:hover {
-  animation: spin 1s;
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(180deg);
-  }
-}
 
 .close-img {
   height: 45px;

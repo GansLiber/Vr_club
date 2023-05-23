@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'InputK',
+  name: 'kursInput',
 
   props: {
     placehold: {

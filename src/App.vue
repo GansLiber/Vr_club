@@ -1,25 +1,22 @@
 <template>
-  <Topbar />
+  <kurs-topbar />
 
   <router-view />
 </template>
 
 <script>
 
-import Topbar from '@/components/Topbar'
-import Home from '@/views/Home'
+import KursTopbar from '@/components/Topbar'
 
 export default {
   components: {
-    Home,
-    Topbar
+    KursTopbar
   }
 }
 
 </script>
 
 <style>
-
 
 nav {
   padding: 30px;

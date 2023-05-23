@@ -9,7 +9,7 @@
           <p>Спорим понравится?</p>
         </div>
         <div class='buttons'>
-          <ButtonK>Хочу играть</ButtonK>
+          <kurs-button>Хочу играть</kurs-button>
           <button class='btn btn-secondary' @click='handleSoundButtonClick'>
             <span v-if='isSoundOn'>Выключить звук</span>
             <span v-else>Включить звук</span>
@@ -25,14 +25,9 @@
 </template>
 
 <script>
-import Login from '@/components/LoginK'
 
 export default {
   name: 'Home',
-
-  components: {
-    Login
-  },
 
   data() {
     return {

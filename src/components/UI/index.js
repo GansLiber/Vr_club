@@ -1,5 +1,5 @@
-import ButtonK from '@/components/UI/ButtonK'
-import InputK from '@/components/UI/InputK'
-import DialogWindowK from '@/components/UI/DialogWindowK'
+import kursButton from '@/components/UI/Button'
+import kursInput from '@/components/UI/Input'
+import kursDialogWindow from '@/components/UI/DialogWindow'
 
-export default [ButtonK, InputK, DialogWindowK]
+export default [kursButton, kursInput, kursDialogWindow]
