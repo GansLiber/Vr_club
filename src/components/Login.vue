@@ -21,7 +21,7 @@
         type='password'
         name='password'
         placehold='Пароль'></kurs-input>
-      <kurs-button>Войти</kurs-button>
+      <kurs-button :disabled='isSubmitting'>Войти</kurs-button>
     </form>
 
   </div>
@@ -39,13 +39,21 @@ export default {
   },
   methods: {
     submitForm() {
-      // Ваша логика обработки отправки формы
-      console.log('Login:', this.login)
-      console.log('Password:', this.password)
-
+      this.$store.dispatch('login', {
+        login: 'admin',
+        password: 'QWEasd123'
+      })
+        .then(user => {
+          console.log('user registered', user)
+        })
       // Сбросить значения полей формы после отправки
       this.login = ''
       this.password = ''
+    }
+  },
+  computed: {
+    isSubmitting() {
+      return this.$store.state.auth.isSubmitting
     }
   }
 }
