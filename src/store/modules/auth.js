@@ -1,11 +1,32 @@
 import authApi from '@/api/auth'
 import app from '@/App'
+import login from '@/components/Login'
 
 const state = {
+  dialogWindows: [
+    {name: 'dialogRegisterVisible', value: false},
+    {name: 'dialogLoginVisible', value: false},
+    {name: 'dialogConfirmVisible', value: false},
+    {name: 'dialogRestoreVisible', value: false},
+  ],
   isSubmitting: false,
 }
 
 const mutations = {
+  // dialog Windows
+  clearDialogVisible(state) {
+    state.dialogWindows.forEach((window) => {
+      window.value = false
+    })
+    console.log(state.dialogWindows)
+  },
+  setSingleDialogVisible(state, prop) {
+    state.dialogWindows.forEach((window) => {
+      window.value = window.name === prop
+    })
+    console.log(state.dialogWindows)
+  },
+
   registerStart(state) {
     state.isSubmitting = true
   },
@@ -26,6 +47,7 @@ const actions = {
         .then((response) => {
           console.log('response', response.data)
           context.commit('registerSuccess', response.data)
+          resolve(response.data)
         })
         .catch((result) => {
           console.log('result errors', result.response.data)

@@ -1,67 +1,74 @@
 <template>
   <div class='login-form'>
-    <h2>Вход</h2>
+    <h2>Регистрация</h2>
     <form @submit.prevent='submitForm'>
       <div class='register-link'>
-        <router-link to='#'>Хотите зарегистрироваться?</router-link>
+        <router-link to='#'>Хотите авторизироваться?</router-link>
       </div>
+
+      <kurs-input
+        v-model.trim='name'
+        type='text'
+        name='name'
+        placehold='Имя'></kurs-input>
+      <kurs-input
+        v-model.trim='surname'
+        type='text'
+        name='surname'
+        placehold='Фамилия'></kurs-input>
       <kursInput
         v-model.trim='login'
         type='text'
         name='login'
         placehold='Логин'></kursInput>
-      <div class='restore-password-link'>
-        <router-link to='#'>Забыли пароль?</router-link>
-      </div>
       <kurs-input
         v-model.trim='password'
         type='password'
         name='password'
         placehold='Пароль'></kurs-input>
+      <kurs-input
+        v-model.trim='email'
+        type='email'
+        name='email'
+        placehold='Почта'></kurs-input>
       <kurs-button :disabled='isSubmitting'>Войти</kurs-button>
+
     </form>
-    <kurs-dialog-window v-model:show='dialogRegisterVisible'>
-      <kurs-register />
-    </kurs-dialog-window>
   </div>
 </template>
 
 <script>
 
-import KursRegister from '@/components/Register'
-
 export default {
-  name: 'kursLogin',
-  components: {KursRegister},
+  name: 'kursRegister',
   data() {
     return {
+      name: '',
+      surname: '',
       login: '',
       password: '',
-
-      dialogRegisterVisible: false
+      email: ''
     }
   },
   methods: {
     submitForm() {
-      this.$store.dispatch('login', {
-        login: 'adm',
-        password: 'QWEasd123'
-      })
-        .then(user => {
-          console.log('user logged', user)
-        })
-      // Сбросить значения полей формы после отправки
-      this.login = ''
-      this.password = ''
-    },
-    showRegisterDialog() {
-      this.dialogRegisterVisible = true
+      //   this.$store.dispatch('login', {
+      //     login: 'adm',
+      //     password: 'QWEasd123'
+      //   })
+      //     .then(user => {
+      //       console.log('user logged', user)
+      //     })
+      //   // Сбросить значения полей формы после отправки
+      //   this.login = ''
+      //   this.password = ''
     }
   },
   computed: {
     isSubmitting() {
       return this.$store.state.auth.isSubmitting
-    }
+    },
+
 
   }
 }

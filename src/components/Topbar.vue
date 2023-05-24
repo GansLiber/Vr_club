@@ -26,7 +26,7 @@
       <!-- Личный кабинет и социальные сети -->
       <ul class='navbar-nav ml-auto'>
         <li class='nav-item'>
-          <a class='nav-link' href='#' @click='showDialog'>
+          <a class='nav-link' href='#' @click='showDialogWindow'>
             <img src='@/assets/user.svg' alt='user' class='logo-img'>
             <span>Личный кабинет</span>
           </a>
@@ -56,31 +56,41 @@
       </ul>
     </div>
   </header>
-  <kurs-dialog-window v-model:show='dialogVisible'>
+  <kurs-dialog-window v-model:show='dialogLoginVisible.value'>
     <kurs-login />
   </kurs-dialog-window>
+
 </template>
 <script>
 import KursLogin from '@/components/Login'
-import KursDialogWindow from '@/components/UI/DialogWindow'
 
 export default {
   name: 'kursTopbar',
 
   components: {
-    KursDialogWindow,
     KursLogin
   },
 
   data() {
     return {
-      dialogVisible: false
+      // dialogLoginVisible: false
+
     }
   },
 
   methods: {
-    showDialog() {
-      this.dialogVisible = true
+    showDialogWindow() {
+      this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
+    }
+  },
+
+  computed: {
+    dialogLoginVisible() {
+      return this.$store.state.auth.dialogWindows[1]
+    },
+
+    currentDialogComponent() {
+
     }
   }
 }
