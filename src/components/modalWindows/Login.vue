@@ -3,7 +3,7 @@
     <h2>Вход</h2>
     <form @submit.prevent='submitForm'>
       <div class='register-link'>
-        <router-link to='#'>Хотите зарегистрироваться?</router-link>
+        <router-link to='#' @click='showDialogRegisterWindow'>Хотите зарегистрироваться?</router-link>
       </div>
       <kursInput
         v-model.trim='login'
@@ -20,15 +20,12 @@
         placehold='Пароль'></kurs-input>
       <kurs-button :disabled='isSubmitting'>Войти</kurs-button>
     </form>
-    <kurs-dialog-window v-model:show='dialogRegisterVisible'>
-      <kurs-register />
-    </kurs-dialog-window>
   </div>
 </template>
 
 <script>
 
-import KursRegister from '@/components/Register'
+import KursRegister from '@/components/modalWindows/Register'
 
 export default {
   name: 'kursLogin',
@@ -36,9 +33,8 @@ export default {
   data() {
     return {
       login: '',
-      password: '',
+      password: ''
 
-      dialogRegisterVisible: false
     }
   },
   methods: {
@@ -54,15 +50,18 @@ export default {
       this.login = ''
       this.password = ''
     },
-    showRegisterDialog() {
-      this.dialogRegisterVisible = true
+
+    showDialogRegisterWindow() {
+      this.$store.commit('setSingleDialogVisible', this.dialogRegisterVisible.name)
     }
   },
   computed: {
     isSubmitting() {
       return this.$store.state.auth.isSubmitting
+    },
+    dialogRegisterVisible() {
+      return this.$store.state.auth.dialogWindows[0]
     }
-
   }
 }
 </script>

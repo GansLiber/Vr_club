@@ -1,9 +1,9 @@
 <template>
-  <div class='login-form'>
+  <div class='register-form'>
     <h2>Регистрация</h2>
     <form @submit.prevent='submitForm'>
-      <div class='register-link'>
-        <router-link to='#'>Хотите авторизироваться?</router-link>
+      <div class='login-link'>
+        <router-link to='#' @click='showDialogLoginWindow'>Хотите авторизироваться?</router-link>
       </div>
 
       <kurs-input
@@ -62,12 +62,19 @@ export default {
       //   // Сбросить значения полей формы после отправки
       //   this.login = ''
       //   this.password = ''
+    },
+
+    showDialogLoginWindow() {
+      this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
     }
   },
   computed: {
     isSubmitting() {
       return this.$store.state.auth.isSubmitting
     },
+    dialogLoginVisible() {
+      return this.$store.state.auth.dialogWindows[1]
+    }
 
 
   }
@@ -81,7 +88,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-.register-link {
+.login-link {
   display: flex;
 
   right: 0;
@@ -91,7 +98,7 @@ h2 {
   align-items: flex-end;
 }
 
-.login-form {
+.register-form {
   max-width: 300px;
   min-width: 300px;
   margin: 0 auto;

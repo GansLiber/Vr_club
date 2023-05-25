@@ -10,8 +10,19 @@
 </template>
 
 <script>
+import KursLogin from '@/components/modalWindows/Login'
+import KursRegister from '@/components/modalWindows/Register'
+
 export default {
   name: 'kursDialogWindow',
+
+  components: {
+    components: {
+      KursLogin,
+      KursRegister
+    }
+  },
+
   props: {
     show: {
       type: Boolean,
@@ -23,7 +34,8 @@ export default {
     hideDialog() {
       this.$emit('update:show', false)
     }
-  }
+  },
+  computed: {}
 }
 </script>
 

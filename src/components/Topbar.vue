@@ -26,7 +26,7 @@
       <!-- Личный кабинет и социальные сети -->
       <ul class='navbar-nav ml-auto'>
         <li class='nav-item'>
-          <a class='nav-link' href='#' @click='showDialogWindow'>
+          <a class='nav-link' href='#' @click='showDialogLoginWindow'>
             <img src='@/assets/user.svg' alt='user' class='logo-img'>
             <span>Личный кабинет</span>
           </a>
@@ -59,27 +59,30 @@
   <kurs-dialog-window v-model:show='dialogLoginVisible.value'>
     <kurs-login />
   </kurs-dialog-window>
-
+  <kurs-dialog-window v-model:show='dialogRegisterVisible.value'>
+    <kurs-register />
+  </kurs-dialog-window>
 </template>
 <script>
-import KursLogin from '@/components/Login'
+import KursLogin from '@/components/modalWindows/Login'
+import KursRegister from '@/components/modalWindows/Register'
 
 export default {
   name: 'kursTopbar',
 
   components: {
-    KursLogin
+    KursLogin,
+    KursRegister
   },
 
   data() {
     return {
       // dialogLoginVisible: false
-
     }
   },
 
   methods: {
-    showDialogWindow() {
+    showDialogLoginWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
     }
   },
@@ -88,13 +91,14 @@ export default {
     dialogLoginVisible() {
       return this.$store.state.auth.dialogWindows[1]
     },
-
-    currentDialogComponent() {
-
+    dialogRegisterVisible() {
+      return this.$store.state.auth.dialogWindows[0]
     }
+
   }
 }
 </script>
+
 <style scoped>
 /* Стили для шапки */
 .navbar {

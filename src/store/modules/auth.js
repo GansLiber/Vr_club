@@ -1,6 +1,6 @@
 import authApi from '@/api/auth'
 import app from '@/App'
-import login from '@/components/Login'
+import login from '@/components/modalWindows/Login'
 
 const state = {
   dialogWindows: [
