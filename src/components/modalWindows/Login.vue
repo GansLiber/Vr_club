@@ -11,7 +11,7 @@
         name='login'
         placehold='Логин'></kursInput>
       <div class='restore-password-link'>
-        <router-link to='#'>Забыли пароль?</router-link>
+        <router-link to='#' @click='showDialogConfirmWindow'>Забыли пароль?</router-link>
       </div>
       <kurs-input
         v-model.trim='password'
@@ -53,6 +53,9 @@ export default {
 
     showDialogRegisterWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogRegisterVisible.name)
+    },
+    showDialogConfirmWindow() {
+      this.$store.commit('setSingleDialogVisible', this.dialogConfirmVisible.name)
     }
   },
   computed: {
@@ -61,6 +64,9 @@ export default {
     },
     dialogRegisterVisible() {
       return this.$store.state.auth.dialogWindows[0]
+    },
+    dialogConfirmVisible() {
+      return this.$store.state.auth.dialogWindows[2]
     }
   }
 }

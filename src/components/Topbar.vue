@@ -62,15 +62,20 @@
   <kurs-dialog-window v-model:show='dialogRegisterVisible.value'>
     <kurs-register />
   </kurs-dialog-window>
+  <kurs-dialog-window v-model:show='dialogConfirmVisible.value'>
+    <kurs-confirm />
+  </kurs-dialog-window>
 </template>
 <script>
 import KursLogin from '@/components/modalWindows/Login'
 import KursRegister from '@/components/modalWindows/Register'
+import KursConfirm from '@/components/modalWindows/Confirm'
 
 export default {
   name: 'kursTopbar',
 
   components: {
+    KursConfirm,
     KursLogin,
     KursRegister
   },
@@ -93,6 +98,9 @@ export default {
     },
     dialogRegisterVisible() {
       return this.$store.state.auth.dialogWindows[0]
+    },
+    dialogConfirmVisible() {
+      return this.$store.state.auth.dialogWindows[2]
     }
 
   }
