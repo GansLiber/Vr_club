@@ -68,6 +68,7 @@ export default {
     dialogConfirmVisible() {
       return this.$store.state.auth.dialogWindows[2]
     }
+
   }
 }
 </script>

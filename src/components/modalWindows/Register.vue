@@ -52,6 +52,10 @@ export default {
   },
   methods: {
     submitForm() {
+      this.sendRegisterUser()
+      this.showDialogConfirmWindow()
+    },
+    sendRegisterUser() {
       //   this.$store.dispatch('login', {
       //     login: 'adm',
       //     password: 'QWEasd123'
@@ -64,8 +68,12 @@ export default {
       //   this.password = ''
     },
 
+
     showDialogLoginWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
+    },
+    showDialogConfirmWindow() {
+      this.$store.commit('setSingleDialogVisible', this.dialogConfirmVisible.name)
     }
   },
   computed: {
@@ -74,9 +82,10 @@ export default {
     },
     dialogLoginVisible() {
       return this.$store.state.auth.dialogWindows[1]
+    },
+    dialogConfirmVisible() {
+      return this.$store.state.auth.dialogWindows[2]
     }
-
-
   }
 }
 </script>

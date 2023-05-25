@@ -1,14 +1,6 @@
 <template>
   <div class='confirm-form'>
-    <h2>Восстановление пароля</h2>
-    <form>
-      <kursInput
-        v-model.trim='confirm'
-        type='text'
-        name='text'
-        placehold='Введите Email или номер'></kursInput>
-      <kurs-button>Отправить</kurs-button>
-    </form>
+    <h2>Вам отправлено подтверждение на почту</h2>
   </div>
 </template>
 

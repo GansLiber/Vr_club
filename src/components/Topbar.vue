@@ -62,6 +62,9 @@
   <kurs-dialog-window v-model:show='dialogRegisterVisible.value'>
     <kurs-register />
   </kurs-dialog-window>
+  <kurs-dialog-window v-model:show='dialogRestoreVisible.value'>
+    <kurs-restor />
+  </kurs-dialog-window>
   <kurs-dialog-window v-model:show='dialogConfirmVisible.value'>
     <kurs-confirm />
   </kurs-dialog-window>
@@ -69,6 +72,7 @@
 <script>
 import KursLogin from '@/components/modalWindows/Login'
 import KursRegister from '@/components/modalWindows/Register'
+import KursRestor from '@/components/modalWindows/Restore'
 import KursConfirm from '@/components/modalWindows/Confirm'
 
 export default {
@@ -76,6 +80,7 @@ export default {
 
   components: {
     KursConfirm,
+    KursRestor,
     KursLogin,
     KursRegister
   },
@@ -101,8 +106,10 @@ export default {
     },
     dialogConfirmVisible() {
       return this.$store.state.auth.dialogWindows[2]
+    },
+    dialogRestoreVisible() {
+      return this.$store.state.auth.dialogWindows[3]
     }
-
   }
 }
 </script>
