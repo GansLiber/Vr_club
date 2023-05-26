@@ -11,7 +11,7 @@
         name='login'
         placehold='Логин'></kursInput>
       <div class='restore-password-link'>
-        <router-link to='#' @click='showDialogConfirmWindow'>Забыли пароль?</router-link>
+        <router-link to='RestorePassword' @click='hideDialogWindow'>Забыли пароль?</router-link>
       </div>
       <kurs-input
         v-model.trim='password'
@@ -40,8 +40,8 @@ export default {
   methods: {
     submitForm() {
       this.$store.dispatch('login', {
-        login: 'adm',
-        password: 'QWEasd123'
+        login: this.login,
+        password: this.password
       })
         .then(user => {
           console.log('user logged', user)
@@ -54,8 +54,8 @@ export default {
     showDialogRegisterWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogRegisterVisible.name)
     },
-    showDialogConfirmWindow() {
-      this.$store.commit('setSingleDialogVisible', this.dialogConfirmVisible.name)
+    hideDialogWindow() {
+      this.$store.commit('setSingleDialogVisible', false)
     }
   },
   computed: {
@@ -64,11 +64,7 @@ export default {
     },
     dialogRegisterVisible() {
       return this.$store.state.auth.dialogWindows[0]
-    },
-    dialogConfirmVisible() {
-      return this.$store.state.auth.dialogWindows[2]
     }
-
   }
 }
 </script>
@@ -82,7 +78,6 @@ h2 {
 
 .register-link {
   display: flex;
-
   right: 0;
 }
 

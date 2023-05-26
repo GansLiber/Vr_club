@@ -58,7 +58,7 @@ export default {
   background-image: url("@/assets/home/background.png");
   background-size: cover;
   background-position: center;
-  height: 56em;
+  height: 55em;
   max-width: 95em;
   margin: 0 auto;
   padding: 0 1em;

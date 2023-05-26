@@ -13,15 +13,15 @@
           <a class='nav-link' href='#'>Бронь</a>
         </li>
         <li class='nav-item'>
-          <a class='nav-link' href='#'>О нас</a>
+          <router-link class='nav-link' to='about'>О нас</router-link>
         </li>
       </ul>
 
       <!-- Логотип -->
-      <a class='navbar-brand' href='#'>
+      <router-link class='navbar-brand' to='/'>
         <img src='@/assets/logo1.png' alt='Logo' class='logo-img'>
         <h2 class='logo-text'>Three H Bucks</h2>
-      </a>
+      </router-link>
 
       <!-- Личный кабинет и социальные сети -->
       <ul class='navbar-nav ml-auto'>
@@ -62,9 +62,6 @@
   <kurs-dialog-window v-model:show='dialogRegisterVisible.value'>
     <kurs-register />
   </kurs-dialog-window>
-  <kurs-dialog-window v-model:show='dialogRestoreVisible.value'>
-    <kurs-restor />
-  </kurs-dialog-window>
   <kurs-dialog-window v-model:show='dialogConfirmVisible.value'>
     <kurs-confirm />
   </kurs-dialog-window>
@@ -72,7 +69,6 @@
 <script>
 import KursLogin from '@/components/modalWindows/Login'
 import KursRegister from '@/components/modalWindows/Register'
-import KursRestor from '@/components/modalWindows/Restore'
 import KursConfirm from '@/components/modalWindows/Confirm'
 
 export default {
@@ -80,7 +76,6 @@ export default {
 
   components: {
     KursConfirm,
-    KursRestor,
     KursLogin,
     KursRegister
   },
@@ -95,6 +90,7 @@ export default {
     showDialogLoginWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
     }
+
   },
 
   computed: {
@@ -106,9 +102,6 @@ export default {
     },
     dialogConfirmVisible() {
       return this.$store.state.auth.dialogWindows[2]
-    },
-    dialogRestoreVisible() {
-      return this.$store.state.auth.dialogWindows[3]
     }
   }
 }
