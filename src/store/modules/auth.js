@@ -33,10 +33,9 @@ const mutations = {
     state.isSubmitting = true
     state.validationErrors = null
   },
-  loginSuccess(state, payload, credentials) {
+  loginSuccess(state, payload) {
     state.isSubmitting = false
     state.currentUser = payload
-    state.tokenUser = credentials
     state.isLoggedIn = true
   },
   loginFailure(state, payload) {
@@ -52,7 +51,10 @@ const actions = {
       authApi
         .login(credentials)
         .then((response) => {
-          context.commit('loginSuccess', response.data, credentials)
+          context.commit('loginSuccess', {
+            token: response.data,
+            user: credentials,
+          })
           context.commit('setSingleDialogVisible', false)
           resolve(response.data)
           console.log('gg', response.data)
