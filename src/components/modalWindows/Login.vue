@@ -11,7 +11,8 @@
         name='login'
         placehold='Логин'></kursInput>
       <div class='restore-password-link'>
-        <router-link to='RestorePassword' @click='hideDialogWindow'>Забыли пароль?</router-link>
+        <a href='https://spacgun.ru/forgot-password' @click='hideDialogWindow'>Забыли пароль?
+        </a>
       </div>
       <kurs-input
         v-model.trim='password'
