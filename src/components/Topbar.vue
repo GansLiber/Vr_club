@@ -27,7 +27,7 @@
       <ul class='navbar-nav ml-auto'>
         <li class='nav-item'>
           <a class='nav-link' href='#' @click='showDialogLoginWindow'>
-            <img src='@/assets/user.svg' alt='user' class='logo-img'>
+            <img src='@/assets/header/user.svg' alt='user' class='logo-img'>
             <span>Личный кабинет</span>
           </a>
         </li>

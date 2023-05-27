@@ -9,54 +9,34 @@
       </div>
       <div class='buttons'>
         <kurs-button>Хочу играть</kurs-button>
-        <button class='btn btn-secondary' @click='handleSoundButtonClick'>
-          <span v-if='isSoundOn'>Выключить звук</span>
-          <span v-else>Включить звук</span>
-          <img :src='soundIcon' alt='sound' class='logo-img'>
-        </button>
-        <audio ref='audioPlayer'>
-          <source :src='music' type='audio/mpeg'>
-        </audio>
+        <kurs-sound-button :track='track'></kurs-sound-button>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'kursFirstScreen',
+  components: {},
+
   data() {
     return {
-      isSoundOn: false,
-      soundIcon: require('@/assets/home/icons/mute.svg'),
-      music: require('@/assets/music/relax.mp3')
+      track: require('@/assets/music/relax.mp3')
     }
   },
-  methods: {
-    handleSoundButtonClick() {
-      this.toggleSound()
-      this.playMusic()
-    },
-    toggleSound() {
-      this.isSoundOn = !this.isSoundOn
-      this.soundIcon = this.isSoundOn ? require('@/assets/home/icons/sound.svg') : require('@/assets/home/icons/mute.svg')
-    },
-    playMusic() {
-      const audioElement = this.$refs.audioPlayer
-      this.isSoundOn ? audioElement.play() : audioElement.pause()
-    }
-  }
+  methods: {}
 }
 </script>
 
 <style scoped>
 .main_home_screen {
-  background-image: url("@/assets/home/background.png");
+  background-image: url("@/assets/home/bgiFirst.png");
   background-size: cover;
   background-position: center;
   height: 55em;
-  /*max-width: 95em;*/
-  /*margin: 0 auto;*/
   padding: 0 1em;
   display: flex;
   align-items: center;
@@ -99,43 +79,8 @@ export default {
   gap: 1em;
 }
 
-
-.btn {
-  padding: 0.3em 1.7em;
-  border-radius: 30px;
-  font-size: 1.5em;
-  transition: background-color 0.3s ease;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-secondary {
-  background-color: #333;
-  color: #fff;
-  width: 314px;
-
-  /* Rectangle 189 */
-
-  box-sizing: border-box;
-
-
-  background: radial-gradient(50% 50% at 50% 50%, rgba(3, 15, 33, 0.5) 0%, rgba(2, 17, 42, 0) 100%);
-  border: 4px solid #FFFFFF;
-  border-radius: 25px;
-
-}
-
 .btn-secondary > img {
   margin-left: 10px;
 }
 
-.btn:hover {
-  background-color: #a20000;
-}
-
-.btn:active {
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
-}
 </style>
