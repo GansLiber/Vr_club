@@ -1,13 +1,29 @@
 <template>
   <div class='twice_home_screen'>
-    <div class='v-container v-container-1'>
-      <kurs-icon :icon-text='"Первый гачи клуб <br> в России"'
-                 :icon-img="require('@/assets/home/icons/twiceHomeScreen/men.svg')" />
+
+    <div class='icons top-icons'>
+      <div class='v-container v-container-1'>
+        <kurs-icon :icon-text='"Первый гачи клуб <br> в России"'
+                   :icon-img="require('@/assets/home/icons/twiceHomeScreen/men.svg')" />
+      </div>
+      <p class='advantage-text'>Почему мы?</p>
+      <div class='v-container v-container-5'>
+        <kurs-icon :icon-text='"Топовые игры\n"+
+      "на рынке"'
+                   :icon-img="require('@/assets/home/icons/twiceHomeScreen/head.svg')" />
+      </div>
     </div>
-    <div class='v-container v-container-2'>
-      <kurs-icon :icon-text='"15% скидка при регистрации\n"+
+    <div class='icons middle-icons'>
+      <div class='v-container v-container-2'>
+        <kurs-icon :icon-text='"15% скидка при регистрации\n"+
       "+ баллы за посещение клуба"'
-                 :icon-img="require('@/assets/home/icons/twiceHomeScreen/sale.svg')" />
+                   :icon-img="require('@/assets/home/icons/twiceHomeScreen/sale.svg')" />
+      </div>
+      <div class='v-container v-container-4'>
+        <kurs-icon :icon-text='"Уникальные ощущения \n"+
+      "и непередаваемые впечатления"'
+                   :icon-img="require('@/assets/home/icons/twiceHomeScreen/joystick.svg')" />
+      </div>
     </div>
     <div class='v-container v-container-3'>
       <kurs-icon :icon-text='"Играйте с друзьями!\n"+
@@ -15,16 +31,8 @@
       "этот опыт в нашем клубе"'
                  :icon-img="require('@/assets/home/icons/twiceHomeScreen/people.svg')" />
     </div>
-    <div class='v-container v-container-4'>
-      <kurs-icon :icon-text='"Уникальные ощущения \n"+
-      "и непередаваемые впечатления"'
-                 :icon-img="require('@/assets/home/icons/twiceHomeScreen/joystick.svg')" />
-    </div>
-    <div class='v-container v-container-5'>
-      <kurs-icon :icon-text='"Топовые игры\n"+
-      "на рынке"'
-                 :icon-img="require('@/assets/home/icons/twiceHomeScreen/head.svg')" />
-    </div>
+
+
   </div>
 </template>
 
@@ -38,6 +46,7 @@ export default {
 </script>
 
 <style scoped>
+
 .twice_home_screen {
   background-image: url("@/assets/home/bgiTwice.png");
   background-size: cover;
@@ -46,13 +55,35 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 6em;
+}
+
+.advantage-text {
+  /* Почему мы? */
+  margin-left: 5em;
+  margin-right: 5em;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 113.19%;
+  /* or 45px */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
 }
 
 .v-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin: 2em;
 }
 
 .v-container-1 {
@@ -61,17 +92,56 @@ export default {
 
 .v-container-2 {
   order: 0;
+  margin-right: 8em;
 }
 
 .v-container-3 {
   order: 1; /* Третий блок */
+  /*margin-top: 5em;*/
 }
 
 .v-container-4 {
   order: 2;
+  margin-left: 8em;
 }
 
 .v-container-5 {
   order: 3; /* Пятый блок */
 }
+
+@media (max-width: 768px) {
+  .twice_home_screen {
+    flex-direction: column;
+  }
+
+  .v-container {
+    margin: 1em;
+  }
+
+  .v-container-1 {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .v-container-2 {
+    order: 2;
+    margin-top: 0;
+  }
+
+  .v-container-3 {
+    order: 3;
+    margin-top: 0;
+  }
+
+  .v-container-4 {
+    order: 4;
+    margin-top: 0;
+  }
+
+  .v-container-5 {
+    order: 5;
+    margin-bottom: 0;
+  }
+}
+
 </style>
