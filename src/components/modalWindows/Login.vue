@@ -1,6 +1,9 @@
 <template>
   <div class='login-form'>
     <h2>Вход</h2>
+    <div v-if='validationErrors' style='color: red'>
+      <p>Неверные логин или пароль</p>
+    </div>
     <form @submit.prevent='submitForm'>
       <div class='register-link'>
         <router-link to='#' @click='showDialogRegisterWindow'>Хотите зарегистрироваться?</router-link>
@@ -65,6 +68,9 @@ export default {
     },
     dialogRegisterVisible() {
       return this.$store.state.auth.dialogWindows[0]
+    },
+    validationErrors() {
+      return this.$store.state.auth.validationErrors
     }
   }
 }

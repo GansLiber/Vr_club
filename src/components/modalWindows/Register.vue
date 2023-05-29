@@ -1,6 +1,13 @@
 <template>
   <div class='register-form'>
     <h2>Регистрация</h2>
+    <div v-if='validationErrors' style='color: red'>
+      <div>{{ validationErrors['message'] }}</div>
+      <br>
+      <div>{{ validationErrors['errors']['login'] }}</div>
+      <br>
+      <div>{{ validationErrors['message']['password'] }}</div>
+    </div>
     <form @submit.prevent='submitForm'>
       <div class='login-link'>
         <router-link to='#' @click='showDialogLoginWindow'>Хотите авторизироваться?</router-link>
@@ -82,6 +89,9 @@ export default {
     },
     dialogLoginVisible() {
       return this.$store.state.auth.dialogWindows[1]
+    },
+    validationErrors() {
+      return this.$store.state.auth.validationErrors
     }
   }
 }

@@ -24,6 +24,7 @@ const mutations = {
   setSingleDialogVisible(state, prop) {
     state.dialogWindows.forEach((window) => {
       window.value = window.name === prop
+      state.validationErrors = null
     })
   },
 
