@@ -52,29 +52,29 @@ export default {
   },
   methods: {
     submitForm() {
-      this.sendRegisterUser()
-      this.showDialogConfirmWindow()
-    },
-    sendRegisterUser() {
-      //   this.$store.dispatch('login', {
-      //     login: 'adm',
-      //     password: 'QWEasd123'
-      //   })
-      //     .then(user => {
-      //       console.log('user logged', user)
-      //     })
-      //   // Сбросить значения полей формы после отправки
-      //   this.login = ''
-      //   this.password = ''
+      this.$store.dispatch('register', {
+        name: this.name,
+        surname: this.surname,
+        login: this.login,
+        password: this.password,
+        email: this.email
+      })
+        .then(user => {
+          console.log('user logged', user)
+        })
+      // Сбросить значения полей формы после отправки
+      this.name = ''
+      this.surname = ''
+      this.login = ''
+      this.password = ''
+      this.email = ''
     },
 
 
     showDialogLoginWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
-    },
-    showDialogConfirmWindow() {
-      this.$store.commit('setSingleDialogVisible', this.dialogConfirmVisible.name)
     }
+
   },
   computed: {
     isSubmitting() {
@@ -82,9 +82,6 @@ export default {
     },
     dialogLoginVisible() {
       return this.$store.state.auth.dialogWindows[1]
-    },
-    dialogConfirmVisible() {
-      return this.$store.state.auth.dialogWindows[2]
     }
   }
 }
