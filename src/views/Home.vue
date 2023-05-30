@@ -3,6 +3,7 @@
     <kurs-first-screen />
     <kurs-twice-screen />
     <kurs-third-screen />
+    <kurs-fourth-screen />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import kursFirstScreen from '@/components/homePage/FirstScreen'
 import kursTwiceScreen from '@/components/homePage/TwiceScreen'
 import kursThirdScreen from '@/components/homePage/ThirdScreen'
+import kursFourthScreen from '@/components/homePage/FourthScreen'
 
 export default {
   name: 'Home',
   components: {
     kursFirstScreen,
     kursTwiceScreen,
-    kursThirdScreen
+    kursThirdScreen,
+    kursFourthScreen
   },
 
 

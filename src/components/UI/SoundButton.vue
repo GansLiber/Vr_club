@@ -53,7 +53,6 @@ export default {
 }
 
 .btn-secondary {
-  background-color: #333;
   color: #fff;
   width: 314px;
 
@@ -62,7 +61,7 @@ export default {
   box-sizing: border-box;
 
 
-  background: radial-gradient(50% 50% at 50% 50%, rgba(3, 15, 33, 0.5) 0%, rgba(2, 17, 42, 0) 100%);
+  background: #333 radial-gradient(50% 50% at 50% 50%, rgba(3, 15, 33, 0.5) 0%, rgba(2, 17, 42, 0) 100%);
   border: 4px solid #FFFFFF;
   border-radius: 25px;
 

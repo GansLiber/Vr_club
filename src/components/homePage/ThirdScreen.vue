@@ -1,22 +1,24 @@
 <template>
   <div class='main-third'>
-    <!--    <img src='@/assets/home/thirdScreen/slide1.png' alt='img' />-->
-    <Swiper
-      effect='cube'
-      :grab-cursor='true'
-      :cube-effect='{
-      shadow: true,
-      sliderShadows: true,
-      shadowOffset: 20,
-      shadowScale: 0.94
-            }'
-      :pagination='true'
-    >
-      <SwiperSlide v-for='photo in photos'>
-        <img :src='require(`@/assets/home/thirdScreen/${photo}`)' alt='img' />
-      </SwiperSlide>
-      <div class='bgcSlider'></div>
-    </Swiper>
+    <p class='advantage-text'>Наши крутые игры</p>
+    <div class='swipe-and-bg'>
+      <Swiper
+        effect='cube'
+        :grab-cursor='true'
+        :cube-effect='{
+          shadow: true,
+          sliderShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94
+        }'
+        :pagination='{ clickable: true }'
+      >
+        <SwiperSlide v-for='photo in photos' :key='photo'>
+          <img :src='requirePhoto(photo)' alt='img' />
+        </SwiperSlide>
+      </Swiper>
+      <div class='bgSlide'></div>
+    </div>
   </div>
 </template>
 
@@ -31,28 +33,32 @@ import 'swiper/css/pagination'
 SwiperCore.use([EffectCube, Pagination])
 
 export default {
-  name: 'kursThirdScreen',
+  name: 'KursThirdScreen',
   components: {
     Swiper,
-    SwiperSlide,
-    EffectCube
+    SwiperSlide
   },
   data() {
     return {
-      photos: [
-        'slide1.png',
-        'slide2.png',
-        'slide3.png'
-      ]
+      photos: ['slide1.png', 'slide2.png', 'slide3.png']
+    }
+  },
+  methods: {
+    requirePhoto(photo) {
+      return require(`@/assets/home/thirdScreen/${photo}`)
     }
   }
-  // Другие опции компонента здесь
 }
 </script>
 
 <style scoped>
 .main-third {
-  height: 20em;
+  height: 60em;
+  position: relative;
+}
+
+.swipe-and-bg {
+  position: relative;
 }
 
 .swiper {
@@ -60,14 +66,29 @@ export default {
   width: 100%;
   height: 800px;
   overflow: visible;
-  position: relative;
 }
 
-.bgcSlider {
-  height: 2em;
-  width: 3em;
-  background-color: #478283;
+.advantage-text {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 113.19%;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #FFFFFF;
+  margin: 2em;
+}
+
+.bgSlide {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 604px;
+  height: 810px;
+  background: #26B7E2;
+  filter: blur(75px);
+  border-radius: 15px;
 }
 
 .swiper-slide img {
