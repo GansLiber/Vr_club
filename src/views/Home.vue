@@ -4,6 +4,7 @@
     <kurs-twice-screen />
     <kurs-third-screen />
     <kurs-fourth-screen />
+    <kurs-fifth-screen />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import kursFirstScreen from '@/components/homePage/FirstScreen'
 import kursTwiceScreen from '@/components/homePage/TwiceScreen'
 import kursThirdScreen from '@/components/homePage/ThirdScreen'
 import kursFourthScreen from '@/components/homePage/FourthScreen'
+import kursFifthScreen from '@/components/homePage/FifthScreen'
 
 export default {
   name: 'Home',
@@ -19,7 +21,8 @@ export default {
     kursFirstScreen,
     kursTwiceScreen,
     kursThirdScreen,
-    kursFourthScreen
+    kursFourthScreen,
+    kursFifthScreen
   },
 
 

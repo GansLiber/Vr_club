@@ -48,6 +48,8 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   position: fixed;
+  z-index: 10;
+
 }
 
 .close {

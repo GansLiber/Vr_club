@@ -72,17 +72,6 @@ export default {
   overflow: visible;
 }
 
-.advantage-text {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 113.19%;
-  text-align: center;
-  letter-spacing: 0.05em;
-  color: #FFFFFF;
-  margin: 2em;
-}
-
 .bgSlide {
   position: absolute;
   top: 50%;
