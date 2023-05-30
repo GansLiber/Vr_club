@@ -1,6 +1,6 @@
 <template>
   <div class='fourth_home_screen'>
-    <p class='advantage-text'>Видеопредставление нашего раскумара</p>
+    <kurs-topic-text :topText='topText' />
 
     <vue-plyr :options='options'>
       <video
@@ -27,11 +27,14 @@
 <script>
 export default {
   name: 'kursFourthScreen',
+  components: {},
+
   data() {
     return {
       options: {
         poster: require('@/assets/home/video/poster.png')
-      }
+      },
+      topText: 'Видеопредставление нашего раскумара'
     }
   }
 }
@@ -39,14 +42,4 @@ export default {
 
 <style scoped>
 
-.advantage-text {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 113.19%;
-  text-align: center;
-  letter-spacing: 0.05em;
-  color: #FFFFFF;
-  margin: 2em;
-}
 </style>

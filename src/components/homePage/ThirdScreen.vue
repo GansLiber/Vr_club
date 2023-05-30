@@ -1,6 +1,6 @@
 <template>
   <div class='main-third'>
-    <p class='advantage-text'>Наши крутые игры</p>
+    <kurs-topic-text :topText='"Наши крутые игры"' />
     <div class='swipe-and-bg'>
       <Swiper
         effect='cube'

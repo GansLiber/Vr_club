@@ -3,10 +3,11 @@
 
     <div class='icons top-icons'>
       <div class='v-container v-container-1'>
-        <kurs-icon :icon-text='"Первый гачи клуб <br> в России"'
+        <kurs-icon :icon-text='"Первый гачи клуб\n"+
+        "в России"'
                    :icon-img="require('@/assets/home/icons/twiceHomeScreen/men.svg')" />
       </div>
-      <p class='advantage-text'>Почему мы?</p>
+      <kurs-topic-text :topText='topText' />
       <div class='v-container v-container-5'>
         <kurs-icon :icon-text='"Топовые игры\n"+
       "на рынке"'
@@ -41,7 +42,12 @@ import kursIcon from '@/components/homePage/Icon'
 
 export default {
   name: 'kursTwiceScreen',
-  components: {kursIcon}
+  components: {kursIcon},
+  data() {
+    return {
+      topText: 'Почему мы?'
+    }
+  }
 }
 </script>
 
@@ -65,21 +71,6 @@ export default {
   padding-bottom: 6em;
 }
 
-.advantage-text {
-  /* Почему мы? */
-  margin-left: 5em;
-  margin-right: 5em;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 113.19%;
-  /* or 45px */
-  display: flex;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.05em;
-  color: #FFFFFF;
-}
 
 .v-container {
   display: flex;
@@ -88,6 +79,7 @@ export default {
 
 .v-container-1 {
   order: -1; /* Первый блок */
+  margin-right: 5em;
 }
 
 .v-container-2 {
@@ -107,6 +99,7 @@ export default {
 
 .v-container-5 {
   order: 3; /* Пятый блок */
+  margin-left: 5em;
 }
 
 @media (max-width: 768px) {
