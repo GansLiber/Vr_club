@@ -5,6 +5,7 @@
     class='inp form-group'
     :placeholder='placehold'
     :type='type'
+    style='align-self: center;'
     required>
 </template>
 

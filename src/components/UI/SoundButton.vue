@@ -63,7 +63,7 @@ export default {
 
   background: #333 radial-gradient(50% 50% at 50% 50%, rgba(3, 15, 33, 0.5) 0%, rgba(2, 17, 42, 0) 100%);
   border: 4px solid #FFFFFF;
-  border-radius: 25px;
+  border-radius: 35px;
 
 }
 

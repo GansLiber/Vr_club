@@ -24,7 +24,7 @@ export default {
   color: #fff;
 
   border: 4px solid #FFFFFF;
-  border-radius: 25px;
+  border-radius: 35px;
 }
 
 .myBtn:hover {
@@ -33,11 +33,9 @@ export default {
 }
 
 .myBtn:active {
-  box-sizing: border-box;
 
   background: #26B7E2;
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 25px;
 
 }
 </style>

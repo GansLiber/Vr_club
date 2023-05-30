@@ -6,24 +6,30 @@
       <kurs-input
         class='inp-form-home'
         v-model.trim='name'
-        type='text'
+        type=''
         name='name'
-        placehold='Ваше имя'
+        placeholder='Ваше имя'
       />
-      <kurs-input
-        class='inp-form-home'
-        v-model.trim='phoneNumber'
-        type='number'
-        name='phoneNumber'
-        placehold='+7(8__)'
-      />
+      <input id='tel' class='inp-form-home' type='tel' placeholder='8(9__) '
+             v-mask="['8(9##) ###-##-##', '8(9##) ###-##-##']">
+
+      <!--      <kurs-input-->
+      <!--        class='inp-form-home'-->
+      <!--        v-model.trim='phoneNumber'-->
+      <!--        type='number'-->
+      <!--        name='phoneNumber'-->
+      <!--        placehold='+7(8__)'-->
+      <!--      />-->
       <kurs-button>Заказать звонок</kurs-button>
     </form>
   </div>
 </template>
 
 <script>
+import {mask} from 'vue-the-mask'
+
 export default {
+  directives: {mask},
   name: 'kursFifthScreen',
   components: {},
   data() {
@@ -46,10 +52,18 @@ export default {
 .container-form {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .inp-form-home {
   max-width: 18em;
+  width: 100%;
+  height: 52px;
+  margin: 0;
+  background: #E4F7FF;
+  border-radius: 25px;
+
+  text-indent: 15px;
 }
 
 .text-center {
