@@ -12,25 +12,29 @@
           shadowScale: 0.94
         }'
         :pagination='{ clickable: true }'
+        :navigation='{ prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next" }'
       >
         <SwiperSlide v-for='photo in photos' :key='photo'>
           <img :src='requirePhoto(photo)' alt='img' />
         </SwiperSlide>
       </Swiper>
       <div class='bgSlide'></div>
+      <div class='swiper-button-prev'></div>
+      <div class='swiper-button-next'></div>
     </div>
   </div>
 </template>
 
 <script>
 import {Swiper, SwiperSlide} from 'swiper/vue'
-import SwiperCore, {EffectCube, Pagination} from 'swiper'
+import SwiperCore, {EffectCube, Pagination, Navigation} from 'swiper'
 
 import 'swiper/css/effect-cube'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
-SwiperCore.use([EffectCube, Pagination])
+SwiperCore.use([EffectCube, Pagination, Navigation])
 
 export default {
   name: 'KursThirdScreen',
@@ -94,5 +98,36 @@ export default {
 .swiper-slide img {
   width: 100%;
   height: 100%;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.swiper-button-prev {
+  left: 20px;
+}
+
+.swiper-button-next {
+  right: 20px;
 }
 </style>
