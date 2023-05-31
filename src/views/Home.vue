@@ -34,8 +34,5 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  max-width: 95em;
-  margin: 0 auto;
-}
+
 </style>

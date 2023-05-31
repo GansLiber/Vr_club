@@ -8,7 +8,7 @@
         v-model.trim='name'
         type=''
         name='name'
-        placeholder='Ваше имя'
+        placehold='Ваше имя'
       />
       <input id='tel' class='inp-form-home' type='tel' placeholder='8(9__) '
              v-mask="['8(9##) ###-##-##', '8(9##) ###-##-##']">
@@ -47,6 +47,7 @@ export default {
 .fifth-screen {
   max-width: 75%;
   margin: 0 auto;
+  height: 20em;
 }
 
 .container-form {

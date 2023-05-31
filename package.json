@@ -23,7 +23,8 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "vue-loader-v16": "^16.0.0-beta.5.4"
   },
   "browserslist": [
     "> 1%",
