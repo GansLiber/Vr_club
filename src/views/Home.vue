@@ -1,10 +1,10 @@
 <template>
   <div class='main'>
-    <kurs-first-screen />
+    <kurs-first-screen @scroll-to-element='scrollToElement' />
     <kurs-twice-screen />
     <kurs-third-screen />
     <kurs-fourth-screen />
-    <kurs-fifth-screen />
+    <kurs-fifth-screen id='fifthScreenElement' />
   </div>
 </template>
 
@@ -24,15 +24,19 @@ export default {
     kursFourthScreen,
     kursFifthScreen
   },
+  methods: {
+    scrollToElement() {
+      this.$nextTick(() => {
+        const fifthScreenElement = document.getElementById('fifthScreenElement')
 
-
-  data() {
-    return {}
-  },
-  methods: {}
+        if (fifthScreenElement) {
+          window.scrollTo({
+            top: fifthScreenElement.offsetTop,
+            behavior: 'smooth'
+          })
+        }
+      })
+    }
+  }
 }
 </script>
-
-<style scoped>
-
-</style>

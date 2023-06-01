@@ -8,7 +8,7 @@
         <p>Спорим понравится?</p>
       </div>
       <div class='buttons'>
-        <kurs-button>Хочу играть</kurs-button>
+        <kurs-button @click='$emit("scroll-to-element")'>Хочу играть</kurs-button>
         <kurs-sound-button :track='track'></kurs-sound-button>
 
       </div>
