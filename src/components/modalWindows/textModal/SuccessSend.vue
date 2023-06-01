@@ -1,18 +1,12 @@
 <template>
   <div class='confirm-form'>
-    <h2>Вам отправлено подтверждение на почту</h2>
+    <h2>Ожидайте, перезвоним через секунду</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'kursConfirm',
-
-  data() {
-    return {
-      confirm: ''
-    }
-  }
+  name: 'kursSuccessSend'
 }
 </script>
 

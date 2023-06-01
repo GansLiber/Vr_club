@@ -5,6 +5,8 @@ const state = {
     {name: 'dialogRegisterVisible', value: false},
     {name: 'dialogLoginVisible', value: false},
     {name: 'dialogConfirmVisible', value: false},
+    {name: 'dialogSuccessSendVisible', value: false},
+    {name: 'dialogFailureSendVisible', value: false},
   ],
   isSubmitting: false,
   currentUser: null,
@@ -55,6 +57,19 @@ const mutations = {
     state.isSubmitting = false
     state.validationErrors = payload
   },
+
+  requestCallStart(state) {
+    state.isSubmitting = true
+    state.validationErrors = null
+  },
+  requestCallSuccess(state) {
+    state.isSubmitting = false
+    // окно удачной отправки
+  },
+  requestCallFailure(state, payload) {
+    state.isSubmitting = false
+    state.validationErrors = payload
+  },
 }
 
 const actions = {
@@ -94,6 +109,27 @@ const actions = {
         })
         .catch((result) => {
           context.commit('registerFailure', result.response.data)
+        })
+    })
+  },
+
+  requestCall(context, credentials) {
+    return new Promise((resolve) => {
+      console.log('wp', credentials)
+      context.commit('requestCallStart')
+      authApi
+        .requestCall(credentials)
+        .then((response) => {
+          context.commit('requestCallSuccess')
+          // context.commit('setSingleDialogVisible', 'dialogConfirmVisible')
+          context.commit('setSingleDialogVisible', 'dialogSuccessSendVisible')
+          resolve(response.data)
+          // console.log('gg', response.data)
+        })
+        .catch((result) => {
+          context.commit('setSingleDialogVisible', 'dialogFailureSendVisible')
+          // console.log('wp', result.response.data)
+          context.commit('requestCallFailure', result.response.data)
         })
     })
   },

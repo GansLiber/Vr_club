@@ -63,26 +63,26 @@
     <kurs-register />
   </kurs-dialog-window>
   <kurs-dialog-window v-model:show='dialogConfirmVisible.value'>
-    <kurs-confirm />
+    <kurs-text-multy-modal :text-modal='textConfirm' />
   </kurs-dialog-window>
 </template>
 <script>
 import KursLogin from '@/components/modalWindows/Login'
 import KursRegister from '@/components/modalWindows/Register'
-import KursConfirm from '@/components/modalWindows/Confirm'
+import KursTextMultyModal from '@/components/modalWindows/textMultyModal'
 
 export default {
   name: 'kursTopbar',
 
   components: {
-    KursConfirm,
+    KursTextMultyModal,
     KursLogin,
     KursRegister
   },
 
   data() {
     return {
-      // dialogLoginVisible: false
+      textConfirm: 'Вам отправлено подтверждение на почту'
     }
   },
 
@@ -90,7 +90,6 @@ export default {
     showDialogLoginWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
     }
-
   },
 
   computed: {

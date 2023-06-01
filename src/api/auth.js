@@ -8,7 +8,12 @@ const register = (credentials) => {
   return axios.post('/register', credentials)
 }
 
+const requestCall = (credentials) => {
+  return axios.post('/requests', credentials)
+}
+
 export default {
   login,
   register,
+  requestCall,
 }

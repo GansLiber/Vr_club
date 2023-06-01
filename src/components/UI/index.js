@@ -3,6 +3,7 @@ import kursInput from '@/components/UI/Input'
 import kursDialogWindow from '@/components/UI/DialogWindow'
 import kursSoundButton from '@/components/UI/SoundButton'
 import kursTopicText from '@/components/UI/TopicText'
+import kursLoader from '@/components/UI/Loader'
 
 export default [
   kursButton,
@@ -10,4 +11,5 @@ export default [
   kursDialogWindow,
   kursSoundButton,
   kursTopicText,
+  kursLoader,
 ]

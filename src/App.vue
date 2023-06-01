@@ -1,5 +1,5 @@
 <template>
-
+  <kurs-loader v-if='isSubmitting' />
   <kurs-topbar />
   <div class='main'>
     <router-view />
@@ -19,6 +19,11 @@ export default {
   components: {
     KursTopbar,
     KursFooter
+  },
+  computed: {
+    isSubmitting() {
+      return this.$store.state.auth.isSubmitting
+    }
   }
 }
 

@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
 .myBtn {
-  padding: 0.3em 1.7em;
+  padding: 0.3em 2.15em;
   font-size: 1.5em;
   transition: background-color 0.3s ease;
 

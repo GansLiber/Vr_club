@@ -2,7 +2,7 @@
   <div class='fifth-screen'>
     <kurs-topic-text :topText='topText' />
     <p class='text-center'>Моментально перезвоним</p>
-    <form class='container-form'>
+    <form class='container-form' @submit.prevent='onSubmit'>
       <kurs-input
         class='inp-form-home'
         v-model.trim='name'
@@ -10,36 +10,55 @@
         name='name'
         placehold='Ваше имя'
       />
-      <input id='tel' class='inp-form-home' type='tel' placeholder='8(9__) '
+      <input v-model.trim='phoneNumber' id='tel' class='inp-form-home' type='tel' placeholder='8(9__) '
              v-mask="['8(9##) ###-##-##', '8(9##) ###-##-##']">
 
-      <!--      <kurs-input-->
-      <!--        class='inp-form-home'-->
-      <!--        v-model.trim='phoneNumber'-->
-      <!--        type='number'-->
-      <!--        name='phoneNumber'-->
-      <!--        placehold='+7(8__)'-->
-      <!--      />-->
       <kurs-button>Заказать звонок</kurs-button>
     </form>
+    <kurs-dialog-window v-model:show='dialogSuccessSendVisible.value'>
+      <kurs-text-multy-modal :text-modal='textSuccessConfirm' />
+    </kurs-dialog-window>
+    <kurs-dialog-window v-model:show='dialogFailureSendVisible.value'>
+      <kurs-text-multy-modal :text-modal='textFailureConfirm' />
+    </kurs-dialog-window>
   </div>
 </template>
 
 <script>
 import {mask} from 'vue-the-mask'
+import KursTextMultyModal from '@/components/modalWindows/textMultyModal'
 
 export default {
   directives: {mask},
   name: 'kursFifthScreen',
-  components: {},
+  components: {KursTextMultyModal},
   data() {
     return {
+      textSuccessConfirm: 'Ожидайте, перезвоним сию минуту',
+      textFailureConfirm: 'Ошибка, неправильно ввели данные',
       topText: 'Есть вопросы или хотите записаться?',
       name: '',
       phoneNumber: ''
     }
+  },
+  methods: {
+    onSubmit() {
+      this.$store.dispatch('requestCall', {
+        name: this.name,
+        phone_number: this.phoneNumber
+      }).then()
+      this.name = ''
+      this.phoneNumber = ''
+    }
+  },
+  computed: {
+    dialogSuccessSendVisible() {
+      return this.$store.state.auth.dialogWindows[3]
+    },
+    dialogFailureSendVisible() {
+      return this.$store.state.auth.dialogWindows[4]
+    }
   }
-
 }
 </script>
 

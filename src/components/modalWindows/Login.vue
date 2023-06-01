@@ -50,7 +50,6 @@ export default {
         .then(user => {
           console.log('user logged', user)
         })
-      // Сбросить значения полей формы после отправки
       this.login = ''
       this.password = ''
     },
