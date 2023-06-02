@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class='under-text'>
-        <p>© Three H bucks, 2021-2022</p>
+        <p>© Three H bucks, 2023</p>
       </div>
     </div>
     <iframe

@@ -17,6 +17,7 @@ const state = {
   tokenUser: null,
   validationErrors: null,
   isLoggedIn: null,
+  isAdmin: null,
 }
 
 const mutations = {
@@ -40,9 +41,11 @@ const mutations = {
   },
   loginSuccess(state, payload) {
     state.isSubmitting = false
+    console.log(payload)
     state.currentUser = payload.credentials
     state.tokenUser = payload.response.data.bearer
     state.isLoggedIn = true
+    state.isAdmin = payload.response.data.role_id
   },
   loginFailure(state, payload) {
     state.isSubmitting = false
@@ -61,6 +64,7 @@ const mutations = {
     }
     state.tokenUser = payload.token
     state.isLoggedIn = true
+    state.isAdmin = payload.role
   },
   loginAgainFailure(state, payload) {
     state.isSubmitting = false
@@ -76,6 +80,7 @@ const mutations = {
     state.currentUser = null
     state.tokenUser = null
     state.isLoggedIn = false
+    state.isAdmin = null
   },
   logoutFailure(state, payload) {
     state.isSubmitting = false
@@ -98,6 +103,7 @@ const mutations = {
 
   setToStorage(state, payload) {
     setItem('accessToken', payload.response.data.bearer)
+    setItem('role', payload.response.data.role_id)
     setItem('login', payload.credentials.login)
     setItem('password', payload.credentials.password)
   },
@@ -181,10 +187,16 @@ const actions = {
   loginAgain(context) {
     context.commit('loginAgainStart')
     const login = getItem('login')
+    const role = getItem('role')
     const token = getItem('accessToken')
     const password = getItem('password')
     if (login && token && password) {
-      const payload = {login: login, token: token, password: password}
+      const payload = {
+        login: login,
+        role: role,
+        token: token,
+        password: password,
+      }
       context.commit('loginAgainSuccess', payload)
     } else {
       context.commit('loginAgainFailure')
