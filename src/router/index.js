@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '@/views/Home.vue'
 import About from '@/views/About'
 import Cabinet from '@/views/Cabinet'
+import store from '@/store'
 
 const routes = [
   {
@@ -24,6 +25,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (!store.state.auth.isLoggedIn && to.name === 'cabinet') {
+    next('/')
+    store.commit('setSingleDialogVisible', 'dialogProtectVisible')
+  } else {
+    next()
+  }
 })
 
 export default router

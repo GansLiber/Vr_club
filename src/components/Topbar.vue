@@ -28,8 +28,12 @@
         <li class='nav-item'>
           <a class='nav-link' href='#'>
             <img src='@/assets/header/user.svg' alt='user' class='logo-img'>
-            <router-link v-if='loggedUser' style='display: inline' to='cabinet'>{{ loggedUser.login
-              }}
+            <router-link
+              class='nav-link'
+              v-if='loggedUser'
+              style='display: inline; text-decoration: none'
+              to='cabinet'>
+              {{ loggedUser.login }}
             </router-link>
             <span v-else @click='showDialogLoginWindow'>Личный кабинет</span>
             <!--            <span  @click='showDialogLoginWindow'>Личный кабинет</span>-->
@@ -69,6 +73,9 @@
   <kurs-dialog-window v-model:show='dialogConfirmVisible.value'>
     <kurs-text-multy-modal :text-modal='textConfirm' />
   </kurs-dialog-window>
+  <kurs-dialog-window v-model:show='dialogProtectVisible.value'>
+    <kurs-text-multy-modal :text-modal='textProtect' />
+  </kurs-dialog-window>
 </template>
 <script>
 import KursLogin from '@/components/modalWindows/Login'
@@ -86,7 +93,8 @@ export default {
 
   data() {
     return {
-      textConfirm: 'Вам отправлено подтверждение на почту'
+      textConfirm: 'Вам отправлено подтверждение на почту',
+      textProtect: 'Вам нужно сначала авторизироваться'
     }
   },
 
@@ -94,6 +102,7 @@ export default {
     showDialogLoginWindow() {
       this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
     }
+
   },
 
   computed: {
@@ -105,6 +114,9 @@ export default {
     },
     dialogConfirmVisible() {
       return this.$store.state.auth.dialogWindows[2]
+    },
+    dialogProtectVisible() {
+      return this.$store.state.auth.dialogWindows[5]
     },
     loggedUser() {
       return this.$store.state.auth.currentUser

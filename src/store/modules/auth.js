@@ -1,5 +1,7 @@
 import authApi from '@/api/auth'
 import {setItem, getItem} from '@/helpers/persistenceStorage'
+import axios from 'axios'
+import router from '@/router'
 
 const state = {
   dialogWindows: [
@@ -8,6 +10,7 @@ const state = {
     {name: 'dialogConfirmVisible', value: false},
     {name: 'dialogSuccessSendVisible', value: false},
     {name: 'dialogFailureSendVisible', value: false},
+    {name: 'dialogProtectVisible', value: false},
   ],
   isSubmitting: false,
   currentUser: null,
@@ -64,6 +67,21 @@ const mutations = {
     state.validationErrors = payload
   },
 
+  logoutStart(state) {
+    state.isSubmitting = true
+    state.validationErrors = null
+  },
+  logoutSuccess(state) {
+    state.isSubmitting = false
+    state.currentUser = null
+    state.tokenUser = null
+    state.isLoggedIn = false
+  },
+  logoutFailure(state, payload) {
+    state.isSubmitting = false
+    state.validationErrors = payload
+  },
+
   registerStart(state) {
     state.isSubmitting = true
     state.validationErrors = null
@@ -111,6 +129,7 @@ const actions = {
           })
           context.commit('setToStorage', {response, credentials})
           context.commit('setSingleDialogVisible', false)
+          router.push('cabinet')
           resolve(response.data)
         })
         .catch((result) => {
@@ -171,7 +190,21 @@ const actions = {
       context.commit('loginAgainFailure')
     }
   },
-  logout(context, credentials) {},
+  logout(context) {
+    context.commit('logoutStart')
+    const token = state.tokenUser
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`
+    authApi
+      .logout()
+      .then(() => {
+        localStorage.clear()
+        router.push('/')
+        context.commit('logoutSuccess')
+      })
+      .catch((error) => {
+        context.commit('logoutFailure', error)
+      })
+  },
 }
 
 export default {

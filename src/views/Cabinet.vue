@@ -1,15 +1,25 @@
 <template>
   <div class='main'>
-    <h2 style='color: white'>{{ loginUser.login }}</h2>
+    <div>
+      <h2 v-if='loginUser' style='color: white'>{{ loginUser.login }}</h2>
+      <kurs-button @click='logout'>Выход</kurs-button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Cabinet',
+  components: {},
+
 
   data() {
     return {}
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
+    }
   },
   computed: {
     loginUser() {
@@ -22,5 +32,10 @@ export default {
 <style scoped>
 .main {
   height: 55em;
+
+}
+
+.main > div {
+  margin: 0 auto;
 }
 </style>

@@ -70,6 +70,7 @@ export default {
 .close-img {
   height: 45px;
   transition: transform 0.3s ease;
+
 }
 
 .content {

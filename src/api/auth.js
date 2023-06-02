@@ -12,8 +12,13 @@ const requestCall = (credentials) => {
   return axios.post('/requests', credentials)
 }
 
+const logout = (credentials) => {
+  return axios.post('/logout', credentials)
+}
+
 export default {
   login,
   register,
   requestCall,
+  logout,
 }

@@ -23,6 +23,7 @@ h2 {
   color: white;
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .register-link > router-link {
