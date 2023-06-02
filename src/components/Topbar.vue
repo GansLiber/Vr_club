@@ -26,9 +26,13 @@
       <!-- Личный кабинет и социальные сети -->
       <ul class='navbar-nav ml-auto'>
         <li class='nav-item'>
-          <a class='nav-link' href='#' @click='showDialogLoginWindow'>
+          <a class='nav-link' href='#'>
             <img src='@/assets/header/user.svg' alt='user' class='logo-img'>
-            <span>Личный кабинет</span>
+            <router-link v-if='loggedUser' style='display: inline' to='cabinet'>{{ loggedUser.login
+              }}
+            </router-link>
+            <span v-else @click='showDialogLoginWindow'>Личный кабинет</span>
+            <!--            <span  @click='showDialogLoginWindow'>Личный кабинет</span>-->
           </a>
         </li>
         <li class='social-media'>
@@ -101,6 +105,9 @@ export default {
     },
     dialogConfirmVisible() {
       return this.$store.state.auth.dialogWindows[2]
+    },
+    loggedUser() {
+      return this.$store.state.auth.currentUser
     }
   }
 }

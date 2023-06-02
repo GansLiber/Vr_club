@@ -1,4 +1,5 @@
 import authApi from '@/api/auth'
+import {setItem, getItem} from '@/helpers/persistenceStorage'
 
 const state = {
   dialogWindows: [
@@ -36,10 +37,29 @@ const mutations = {
   },
   loginSuccess(state, payload) {
     state.isSubmitting = false
-    state.currentUser = payload
+    state.currentUser = payload.credentials
+    state.tokenUser = payload.response.data.bearer
     state.isLoggedIn = true
   },
   loginFailure(state, payload) {
+    state.isSubmitting = false
+    state.validationErrors = payload
+  },
+
+  loginAgainStart(state) {
+    state.isSubmitting = true
+    state.validationErrors = null
+  },
+  loginAgainSuccess(state, payload) {
+    state.isSubmitting = false
+    state.currentUser = {
+      login: payload.login,
+      password: payload.password,
+    }
+    state.tokenUser = payload.token
+    state.isLoggedIn = true
+  },
+  loginAgainFailure(state, payload) {
     state.isSubmitting = false
     state.validationErrors = payload
   },
@@ -56,6 +76,12 @@ const mutations = {
   registerFailure(state, payload) {
     state.isSubmitting = false
     state.validationErrors = payload
+  },
+
+  setToStorage(state, payload) {
+    setItem('accessToken', payload.response.data.bearer)
+    setItem('login', payload.credentials.login)
+    setItem('password', payload.credentials.password)
   },
 
   requestCallStart(state) {
@@ -80,12 +106,12 @@ const actions = {
         .login(credentials)
         .then((response) => {
           context.commit('loginSuccess', {
-            token: response.data,
-            user: credentials,
+            response,
+            credentials,
           })
+          context.commit('setToStorage', {response, credentials})
           context.commit('setSingleDialogVisible', false)
           resolve(response.data)
-          console.log('gg', response.data)
         })
         .catch((result) => {
           context.commit('loginFailure', result.response.data)
@@ -133,6 +159,19 @@ const actions = {
         })
     })
   },
+  loginAgain(context) {
+    context.commit('loginAgainStart')
+    const login = getItem('login')
+    const token = getItem('accessToken')
+    const password = getItem('password')
+    if (login && token && password) {
+      const payload = {login: login, token: token, password: password}
+      context.commit('loginAgainSuccess', payload)
+    } else {
+      context.commit('loginAgainFailure')
+    }
+  },
+  logout(context, credentials) {},
 }
 
 export default {

@@ -10,7 +10,6 @@
       <div class='buttons'>
         <kurs-button @click='$emit("scroll-to-element")'>Хочу играть</kurs-button>
         <kurs-sound-button :track='track'></kurs-sound-button>
-
       </div>
     </div>
   </div>

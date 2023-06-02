@@ -24,6 +24,9 @@ export default {
     isSubmitting() {
       return this.$store.state.auth.isSubmitting
     }
+  },
+  mounted() {
+    this.$store.dispatch('loginAgain')
   }
 }
 
