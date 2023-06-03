@@ -13,7 +13,7 @@
           <a class='nav-link' href='#'>Бронь</a>
         </li>
         <li class='nav-item'>
-          <router-link class='nav-link' to='about'>О нас</router-link>
+          <router-link class='nav-link' :to='`/about`'>О нас</router-link>
         </li>
       </ul>
 

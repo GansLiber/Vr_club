@@ -71,7 +71,6 @@ export default {
   padding-bottom: 6em;
 }
 
-
 .v-container {
   display: flex;
   align-items: center;
@@ -100,41 +99,6 @@ export default {
 .v-container-5 {
   order: 3; /* Пятый блок */
   margin-left: 5em;
-}
-
-@media (max-width: 768px) {
-  .twice_home_screen {
-    flex-direction: column;
-  }
-
-  .v-container {
-    margin: 1em;
-  }
-
-  .v-container-1 {
-    order: 1;
-    margin-bottom: 0;
-  }
-
-  .v-container-2 {
-    order: 2;
-    margin-top: 0;
-  }
-
-  .v-container-3 {
-    order: 3;
-    margin-top: 0;
-  }
-
-  .v-container-4 {
-    order: 4;
-    margin-top: 0;
-  }
-
-  .v-container-5 {
-    order: 5;
-    margin-bottom: 0;
-  }
 }
 
 </style>

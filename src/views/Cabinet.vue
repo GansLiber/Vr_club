@@ -2,8 +2,8 @@
   <div class='main'>
     <div>
       <h2 v-if='loginUser' style='color: white'>{{ loginUser.login }}</h2>
+      <router-link to='admin'>Админ панель</router-link>
       <kurs-button @click='logout'>Выход</kurs-button>
-      <router-link to=''>Админ панель</router-link>
     </div>
   </div>
 </template>
@@ -12,7 +12,6 @@
 export default {
   name: 'Cabinet',
   components: {},
-
 
   data() {
     return {}

@@ -3,6 +3,9 @@ import HomeView from '@/views/Home.vue'
 import About from '@/views/About'
 import Cabinet from '@/views/Cabinet'
 import store from '@/store'
+import kursAdmin from '@/components/adminPanel/Admin'
+import AdminCategory from '@/components/adminPanel/AdminCategory'
+import AdminLayout from '@/views/AdminLayout'
 
 const routes = [
   {
@@ -19,6 +22,27 @@ const routes = [
     path: '/cabinet',
     name: 'cabinet',
     component: Cabinet,
+  },
+  // {
+  //   path: '/admin/:category',
+  //   name: 'category',
+  //   component: AdminCategory,
+  // },
+  {
+    path: '/admin',
+    component: AdminLayout,
+    children: [
+      {
+        path: '',
+        name: 'categories',
+        component: kursAdmin,
+      },
+      {
+        path: ':category',
+        name: 'category',
+        component: AdminCategory,
+      },
+    ],
   },
 ]
 
