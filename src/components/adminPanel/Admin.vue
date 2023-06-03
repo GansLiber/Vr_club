@@ -1,6 +1,5 @@
 <template>
   <div class='admin-panel'>
-    <h1>Админ Панель</h1>
     <div class='category-list'>
       <h2>Категории:</h2>
       <ul>

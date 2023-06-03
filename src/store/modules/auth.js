@@ -2,6 +2,7 @@ import authApi from '@/api/auth'
 import {setItem, getItem} from '@/helpers/persistenceStorage'
 import axios from 'axios'
 import router from '@/router'
+import {createNamespacedHelpers} from 'vuex'
 
 const state = {
   dialogWindows: [

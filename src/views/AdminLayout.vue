@@ -1,4 +1,5 @@
 <template>
+  <h1>Админ Панель</h1>
   <div>
     <router-view></router-view>
   </div>

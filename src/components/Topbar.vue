@@ -64,16 +64,16 @@
       </ul>
     </div>
   </header>
-  <kurs-dialog-window v-model:show='dialogLoginVisible.value'>
+  <kurs-dialog-window v-model:show='dialogWindows[1].value'>
     <kurs-login />
   </kurs-dialog-window>
-  <kurs-dialog-window v-model:show='dialogRegisterVisible.value'>
+  <kurs-dialog-window v-model:show='dialogWindows[0].value'>
     <kurs-register />
   </kurs-dialog-window>
-  <kurs-dialog-window v-model:show='dialogConfirmVisible.value'>
+  <kurs-dialog-window v-model:show='dialogWindows[2].value'>
     <kurs-text-multy-modal :text-modal='textConfirm' />
   </kurs-dialog-window>
-  <kurs-dialog-window v-model:show='dialogProtectVisible.value'>
+  <kurs-dialog-window v-model:show='dialogWindows[5].value'>
     <kurs-text-multy-modal :text-modal='textProtect' />
   </kurs-dialog-window>
 </template>
@@ -81,6 +81,8 @@
 import KursLogin from '@/components/modalWindows/Login'
 import KursRegister from '@/components/modalWindows/Register'
 import KursTextMultyModal from '@/components/modalWindows/textMultyModal'
+
+import {mapState, mapMutations, mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'kursTopbar',
@@ -99,28 +101,22 @@ export default {
   },
 
   methods: {
-    showDialogLoginWindow() {
-      this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
-    }
+    ...mapMutations(['setSingleDialogVisible']),
 
+    showDialogLoginWindow() {
+      this.setSingleDialogVisible(this.dialogWindows[1].name)
+    }
   },
 
   computed: {
-    dialogLoginVisible() {
-      return this.$store.state.auth.dialogWindows[1]
-    },
-    dialogRegisterVisible() {
-      return this.$store.state.auth.dialogWindows[0]
-    },
-    dialogConfirmVisible() {
-      return this.$store.state.auth.dialogWindows[2]
-    },
-    dialogProtectVisible() {
-      return this.$store.state.auth.dialogWindows[5]
-    },
-    loggedUser() {
-      return this.$store.state.auth.currentUser
-    }
+    ...mapState({
+      dialogWindows: state => state.auth.dialogWindows,
+      loggedUser: state => state.auth.currentUser
+    })
+
+    // loggedUser() {
+    //   return this.$store.state.auth.currentUser
+    // }
   }
 }
 </script>
