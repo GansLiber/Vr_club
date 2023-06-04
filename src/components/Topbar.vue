@@ -64,25 +64,28 @@
       </ul>
     </div>
   </header>
-  <kurs-dialog-window v-model:show='dialogWindows[1].value'>
-    <kurs-login />
-  </kurs-dialog-window>
-  <kurs-dialog-window v-model:show='dialogWindows[0].value'>
-    <kurs-register />
-  </kurs-dialog-window>
-  <kurs-dialog-window v-model:show='dialogWindows[2].value'>
-    <kurs-text-multy-modal :text-modal='textConfirm' />
-  </kurs-dialog-window>
-  <kurs-dialog-window v-model:show='dialogWindows[5].value'>
-    <kurs-text-multy-modal :text-modal='textProtect' />
-  </kurs-dialog-window>
+  <!--  <kurs-dialog-window v-model:show='dialogWindows[1].value'>-->
+  <!--    <kurs-login />-->
+  <!--  </kurs-dialog-window>-->
+  <!--  <kurs-dialog-window v-model:show='dialogWindows[0].value'>-->
+  <!--    <kurs-register />-->
+  <!--  </kurs-dialog-window>-->
+  <!--  <kurs-dialog-window v-model:show='dialogWindows[2].value'>-->
+  <!--    <kurs-text-multy-modal :text-modal='textConfirm' />-->
+  <!--  </kurs-dialog-window>-->
+  <!--  <kurs-dialog-window v-model:show='dialogWindows[5].value'>-->
+  <!--    <kurs-text-multy-modal :text-modal='textProtect' />-->
+  <!--  </kurs-dialog-window>-->
+  <kurs-main-modal>
+  </kurs-main-modal>
 </template>
 <script>
 import KursLogin from '@/components/modalWindows/Login'
 import KursRegister from '@/components/modalWindows/Register'
 import KursTextMultyModal from '@/components/modalWindows/textMultyModal'
+import KursMainModal from '@/components/modalWindows/MainModal'
 
-import {mapState, mapMutations, mapActions, mapGetters} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'kursTopbar',
@@ -90,13 +93,14 @@ export default {
   components: {
     KursTextMultyModal,
     KursLogin,
-    KursRegister
+    KursRegister,
+    KursMainModal
   },
 
   data() {
     return {
-      textConfirm: 'Вам отправлено подтверждение на почту',
-      textProtect: 'Вам нужно сначала авторизироваться'
+      // textConfirm: 'Вам отправлено подтверждение на почту',
+      // textProtect: 'Вам нужно сначала авторизироваться'
     }
   },
 
@@ -110,7 +114,7 @@ export default {
 
   computed: {
     ...mapState({
-      dialogWindows: state => state.auth.dialogWindows,
+      dialogWindows: state => state.dialogWindow.dialogWindows,
       loggedUser: state => state.auth.currentUser
     })
 

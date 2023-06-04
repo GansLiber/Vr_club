@@ -12,6 +12,7 @@
 <script>
 import KursLogin from '@/components/modalWindows/Login'
 import KursRegister from '@/components/modalWindows/Register'
+import {mapMutations} from 'vuex'
 
 export default {
   name: 'kursDialogWindow',
@@ -31,8 +32,10 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['setSingleDialogVisible']),
+
     hideDialog() {
-      this.$emit('update:show', false)
+      this.setSingleDialogVisible(false)
     }
   },
   computed: {}

@@ -1,3 +1,5 @@
+import store from '@/store'
+
 const state = {
   dialogWindows: [
     {name: 'dialogRegisterVisible', value: false},
@@ -22,6 +24,7 @@ const mutations = {
     state.dialogWindows.forEach((window) => {
       window.value = window.name === prop
     })
+    store.commit('toZeroErrors')
     state.showWindow = state.dialogWindows.some((window) => window.value)
   },
 }

@@ -2,16 +2,15 @@ import authApi from '@/api/auth'
 import {setItem, getItem} from '@/helpers/persistenceStorage'
 import axios from 'axios'
 import router from '@/router'
-import {createNamespacedHelpers} from 'vuex'
 
 const state = {
   dialogWindows: [
-    {name: 'dialogRegisterVisible', value: false},
-    {name: 'dialogLoginVisible', value: false},
-    {name: 'dialogConfirmVisible', value: false},
-    {name: 'dialogSuccessSendVisible', value: false},
-    {name: 'dialogFailureSendVisible', value: false},
-    {name: 'dialogProtectVisible', value: false},
+    // {name: 'dialogRegisterVisible', value: false},
+    // {name: 'dialogLoginVisible', value: false},
+    // {name: 'dialogConfirmVisible', value: false},
+    // {name: 'dialogSuccessSendVisible', value: false},
+    // {name: 'dialogFailureSendVisible', value: false},
+    // {name: 'dialogProtectVisible', value: false},
   ],
   isSubmitting: false,
   currentUser: null,
@@ -22,6 +21,9 @@ const state = {
 }
 
 const mutations = {
+  toZeroErrors(state) {
+    state.validationErrors = null
+  },
   // dialog Windows
   // clearDialogVisible(state) {
   //   state.dialogWindows.forEach((window) => {
@@ -29,12 +31,12 @@ const mutations = {
   //   })
   //   console.log(state.dialogWindows)
   // },
-  setSingleDialogVisible(state, prop) {
-    state.dialogWindows.forEach((window) => {
-      window.value = window.name === prop
-      state.validationErrors = null
-    })
-  },
+  // setSingleDialogVisible(state, prop) {
+  // state.dialogWindows.forEach((window) => {
+  //   window.value = window.name === prop
+  //   state.validationErrors = null
+  // })
+  // },
 
   loginStart(state) {
     state.isSubmitting = true
@@ -92,10 +94,8 @@ const mutations = {
     state.isSubmitting = true
     state.validationErrors = null
   },
-  registerSuccess(state, payload) {
+  registerSuccess(state) {
     state.isSubmitting = false
-    state.currentUser = payload
-    state.isLoggedIn = true
   },
   registerFailure(state, payload) {
     state.isSubmitting = false
@@ -151,10 +151,7 @@ const actions = {
       authApi
         .register(credentials)
         .then((response) => {
-          context.commit('registerSuccess', {
-            token: response.data,
-            user: credentials,
-          })
+          context.commit('registerSuccess')
           context.commit('setSingleDialogVisible', 'dialogConfirmVisible')
           resolve(response.data)
           console.log('gg', response.data)
@@ -173,14 +170,11 @@ const actions = {
         .requestCall(credentials)
         .then((response) => {
           context.commit('requestCallSuccess')
-          // context.commit('setSingleDialogVisible', 'dialogConfirmVisible')
           context.commit('setSingleDialogVisible', 'dialogSuccessSendVisible')
           resolve(response.data)
-          // console.log('gg', response.data)
         })
         .catch((result) => {
           context.commit('setSingleDialogVisible', 'dialogFailureSendVisible')
-          // console.log('wp', result.response.data)
           context.commit('requestCallFailure', result.response.data)
         })
     })

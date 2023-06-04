@@ -46,6 +46,8 @@
 
 <script>
 
+import {mapMutations, mapState} from 'vuex'
+
 export default {
   name: 'kursRegister',
   data() {
@@ -77,13 +79,22 @@ export default {
       this.email = ''
     },
 
+    ...mapMutations(['setSingleDialogVisible']),
 
     showDialogLoginWindow() {
-      this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
+      this.setSingleDialogVisible(this.dialogWindows[1].name)
     }
+
+    // showDialogLoginWindow() {
+    //   this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
+    // }
 
   },
   computed: {
+    ...mapState({
+      dialogWindows: state => state.dialogWindow.dialogWindows,
+    }),
+
     isSubmitting() {
       return this.$store.state.auth.isSubmitting
     },

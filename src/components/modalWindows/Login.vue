@@ -30,10 +30,12 @@
 <script>
 
 import KursRegister from '@/components/modalWindows/Register'
+import {mapMutations, mapState} from 'vuex'
 
 export default {
   name: 'kursLogin',
   components: {KursRegister},
+  props: {},
   data() {
     return {
       login: '',
@@ -54,23 +56,23 @@ export default {
       this.password = ''
     },
 
+    ...mapMutations(['setSingleDialogVisible']),
+
     showDialogRegisterWindow() {
-      this.$store.commit('setSingleDialogVisible', this.dialogRegisterVisible.name)
-    },
-    hideDialogWindow() {
-      this.$store.commit('setSingleDialogVisible', false)
+      this.setSingleDialogVisible(this.dialogWindows[0].name)
     }
   },
   computed: {
+    ...mapState({
+      dialogWindows: state => state.dialogWindow.dialogWindows,
+      isSubmitting: state => state.auth.isSubmitting,
+      validationErrors: state => state.auth.validationErrors
+    }),
+
     isSubmitting() {
       return this.$store.state.auth.isSubmitting
-    },
-    dialogRegisterVisible() {
-      return this.$store.state.auth.dialogWindows[0]
-    },
-    validationErrors() {
-      return this.$store.state.auth.validationErrors
     }
+
   }
 }
 </script>

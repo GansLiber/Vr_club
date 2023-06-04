@@ -15,12 +15,6 @@
 
       <kurs-button>Заказать звонок</kurs-button>
     </form>
-    <kurs-dialog-window v-model:show='dialogSuccessSendVisible.value'>
-      <kurs-text-multy-modal :text-modal='textSuccessConfirm' />
-    </kurs-dialog-window>
-    <kurs-dialog-window v-model:show='dialogFailureSendVisible.value'>
-      <kurs-text-multy-modal :text-modal='textFailureConfirm' />
-    </kurs-dialog-window>
   </div>
 </template>
 
@@ -34,8 +28,6 @@ export default {
   components: {KursTextMultyModal},
   data() {
     return {
-      textSuccessConfirm: 'Ожидайте, перезвоним сию минуту',
-      textFailureConfirm: 'Ошибка, неправильно ввели данные',
       topText: 'Есть вопросы или хотите записаться?',
       name: '',
       phoneNumber: ''
@@ -51,14 +43,7 @@ export default {
       this.phoneNumber = ''
     }
   },
-  computed: {
-    dialogSuccessSendVisible() {
-      return this.$store.state.auth.dialogWindows[3]
-    },
-    dialogFailureSendVisible() {
-      return this.$store.state.auth.dialogWindows[4]
-    }
-  }
+  computed: {}
 }
 </script>
 
