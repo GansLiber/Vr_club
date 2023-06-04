@@ -4,14 +4,6 @@ import axios from 'axios'
 import router from '@/router'
 
 const state = {
-  dialogWindows: [
-    // {name: 'dialogRegisterVisible', value: false},
-    // {name: 'dialogLoginVisible', value: false},
-    // {name: 'dialogConfirmVisible', value: false},
-    // {name: 'dialogSuccessSendVisible', value: false},
-    // {name: 'dialogFailureSendVisible', value: false},
-    // {name: 'dialogProtectVisible', value: false},
-  ],
   isSubmitting: false,
   currentUser: null,
   tokenUser: null,
@@ -24,19 +16,6 @@ const mutations = {
   toZeroErrors(state) {
     state.validationErrors = null
   },
-  // dialog Windows
-  // clearDialogVisible(state) {
-  //   state.dialogWindows.forEach((window) => {
-  //     window.value = false
-  //   })
-  //   console.log(state.dialogWindows)
-  // },
-  // setSingleDialogVisible(state, prop) {
-  // state.dialogWindows.forEach((window) => {
-  //   window.value = window.name === prop
-  //   state.validationErrors = null
-  // })
-  // },
 
   loginStart(state) {
     state.isSubmitting = true
@@ -140,6 +119,7 @@ const actions = {
           resolve(response.data)
         })
         .catch((result) => {
+          console.log('gf', result.response.data)
           context.commit('loginFailure', result.response.data)
         })
     })

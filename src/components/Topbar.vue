@@ -64,20 +64,7 @@
       </ul>
     </div>
   </header>
-  <!--  <kurs-dialog-window v-model:show='dialogWindows[1].value'>-->
-  <!--    <kurs-login />-->
-  <!--  </kurs-dialog-window>-->
-  <!--  <kurs-dialog-window v-model:show='dialogWindows[0].value'>-->
-  <!--    <kurs-register />-->
-  <!--  </kurs-dialog-window>-->
-  <!--  <kurs-dialog-window v-model:show='dialogWindows[2].value'>-->
-  <!--    <kurs-text-multy-modal :text-modal='textConfirm' />-->
-  <!--  </kurs-dialog-window>-->
-  <!--  <kurs-dialog-window v-model:show='dialogWindows[5].value'>-->
-  <!--    <kurs-text-multy-modal :text-modal='textProtect' />-->
-  <!--  </kurs-dialog-window>-->
-  <kurs-main-modal>
-  </kurs-main-modal>
+  <kurs-main-modal />
 </template>
 <script>
 import KursLogin from '@/components/modalWindows/Login'
@@ -98,10 +85,7 @@ export default {
   },
 
   data() {
-    return {
-      // textConfirm: 'Вам отправлено подтверждение на почту',
-      // textProtect: 'Вам нужно сначала авторизироваться'
-    }
+    return {}
   },
 
   methods: {
@@ -117,10 +101,6 @@ export default {
       dialogWindows: state => state.dialogWindow.dialogWindows,
       loggedUser: state => state.auth.currentUser
     })
-
-    // loggedUser() {
-    //   return this.$store.state.auth.currentUser
-    // }
   }
 }
 </script>

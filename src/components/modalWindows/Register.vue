@@ -71,7 +71,6 @@ export default {
         .then(user => {
           console.log('user logged', user)
         })
-      // Сбросить значения полей формы после отправки
       this.name = ''
       this.surname = ''
       this.login = ''
@@ -84,26 +83,13 @@ export default {
     showDialogLoginWindow() {
       this.setSingleDialogVisible(this.dialogWindows[1].name)
     }
-
-    // showDialogLoginWindow() {
-    //   this.$store.commit('setSingleDialogVisible', this.dialogLoginVisible.name)
-    // }
-
   },
   computed: {
     ...mapState({
       dialogWindows: state => state.dialogWindow.dialogWindows,
-    }),
-
-    isSubmitting() {
-      return this.$store.state.auth.isSubmitting
-    },
-    dialogLoginVisible() {
-      return this.$store.state.auth.dialogWindows[1]
-    },
-    validationErrors() {
-      return this.$store.state.auth.validationErrors
-    }
+      isSubmitting: state => state.auth.isSubmitting,
+      validationErrors: state => state.auth.validationErrors
+    })
   }
 }
 </script>
