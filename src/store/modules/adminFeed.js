@@ -5,9 +5,28 @@ const state = {
   errors: null,
 }
 
-const mutations = {}
+const mutations = {
+  getFeedStart(state) {
+    this.commit('global/setLoading', true)
+    state.data = null
+  },
+  getFeedSuccess(state, payload) {
+    this.commit('global/setLoading', false)
+    state.data = payload
+  },
+  getFeedFailure(state, payload) {
+    this.commit('global/setLoading', false)
+    state.errors = payload
+  },
+}
 
-const actions = {}
+const actions = {
+  getFeed(context, {apiUrl}) {
+    return new Promise((resolve) => {
+      context.commit('getFeedStart')
+    })
+  },
+}
 
 export default {
   state,

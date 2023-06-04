@@ -22,7 +22,7 @@
         type='password'
         name='password'
         placehold='Пароль'></kurs-input>
-      <kurs-button :disabled='isSubmitting'>Войти</kurs-button>
+      <kurs-button :disabled='isLoading'>Войти</kurs-button>
     </form>
   </div>
 </template>
@@ -65,12 +65,12 @@ export default {
   computed: {
     ...mapState({
       dialogWindows: state => state.dialogWindow.dialogWindows,
-      isSubmitting: state => state.auth.isSubmitting,
+      isSubmitting: state => state.global.isLoading,
       validationErrors: state => state.auth.validationErrors
     }),
 
-    isSubmitting() {
-      return this.$store.state.auth.isSubmitting
+    isLoading() {
+      return this.$store.state.global.isLoading
     }
 
   }

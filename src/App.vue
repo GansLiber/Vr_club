@@ -1,5 +1,5 @@
 <template>
-  <kurs-loader v-if='isSubmitting' />
+  <kurs-loader v-if='isLoading' />
   <kurs-topbar />
   <div class='main'>
     <router-view />
@@ -21,8 +21,8 @@ export default {
     KursFooter
   },
   computed: {
-    isSubmitting() {
-      return this.$store.state.auth.isSubmitting
+    isLoading() {
+      return this.$store.state.global.isLoading
     }
   },
   mounted() {

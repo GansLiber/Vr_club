@@ -5,9 +5,8 @@
       <ul>
         <li v-for='category in categories' :key='category.value'>
           <router-link
-            :to="{ name: 'category', params: { category: category.value, name: category.name } }"
+            :to="{ name: 'category', params: { category: category.value, name: category.name, api: category.api } }"
             exact
-            :class='{ active: isActiveCategory(category.value) }'
           >
             {{ category.name }}
           </router-link>

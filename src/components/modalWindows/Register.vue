@@ -38,7 +38,7 @@
         type='email'
         name='email'
         placehold='Почта'></kurs-input>
-      <kurs-button :disabled='isSubmitting'>Войти</kurs-button>
+      <kurs-button :disabled='isLoading'>Войти</kurs-button>
 
     </form>
   </div>
@@ -87,7 +87,7 @@ export default {
   computed: {
     ...mapState({
       dialogWindows: state => state.dialogWindow.dialogWindows,
-      isSubmitting: state => state.auth.isSubmitting,
+      isLoading: state => state.global.isLoading,
       validationErrors: state => state.auth.validationErrors
     })
   }

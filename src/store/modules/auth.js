@@ -4,12 +4,15 @@ import axios from 'axios'
 import router from '@/router'
 
 const state = {
-  isSubmitting: false,
   currentUser: null,
   tokenUser: null,
   validationErrors: null,
   isLoggedIn: null,
   isAdmin: null,
+}
+
+const getters = {
+  getToken: (state) => state.tokenUser,
 }
 
 const mutations = {
@@ -18,11 +21,11 @@ const mutations = {
   },
 
   loginStart(state) {
-    state.isSubmitting = true
+    this.commit('global/setLoading', true)
     state.validationErrors = null
   },
   loginSuccess(state, payload) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     console.log(payload)
     state.currentUser = payload.credentials
     state.tokenUser = payload.response.data.bearer
@@ -30,16 +33,16 @@ const mutations = {
     state.isAdmin = payload.response.data.role_id
   },
   loginFailure(state, payload) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     state.validationErrors = payload
   },
 
   loginAgainStart(state) {
-    state.isSubmitting = true
+    this.commit('global/setLoading', true)
     state.validationErrors = null
   },
   loginAgainSuccess(state, payload) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     state.currentUser = {
       login: payload.login,
       password: payload.password,
@@ -49,35 +52,35 @@ const mutations = {
     state.isAdmin = payload.role
   },
   loginAgainFailure(state, payload) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     state.validationErrors = payload
   },
 
   logoutStart(state) {
-    state.isSubmitting = true
+    this.commit('global/setLoading', true)
     state.validationErrors = null
   },
   logoutSuccess(state) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     state.currentUser = null
     state.tokenUser = null
     state.isLoggedIn = false
     state.isAdmin = null
   },
   logoutFailure(state, payload) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     state.validationErrors = payload
   },
 
   registerStart(state) {
-    state.isSubmitting = true
+    this.commit('global/setLoading', true)
     state.validationErrors = null
   },
   registerSuccess(state) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
   },
   registerFailure(state, payload) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     state.validationErrors = payload
   },
 
@@ -89,15 +92,15 @@ const mutations = {
   },
 
   requestCallStart(state) {
-    state.isSubmitting = true
+    this.commit('global/setLoading', true)
     state.validationErrors = null
   },
   requestCallSuccess(state) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     // окно удачной отправки
   },
   requestCallFailure(state, payload) {
-    state.isSubmitting = false
+    this.commit('global/setLoading', false)
     state.validationErrors = payload
   },
 }
@@ -198,4 +201,5 @@ export default {
   state,
   mutations,
   actions,
+  getters,
 }
