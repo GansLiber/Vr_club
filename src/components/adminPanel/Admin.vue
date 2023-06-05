@@ -5,7 +5,12 @@
       <ul>
         <li v-for='category in categories' :key='category.value'>
           <router-link
-            :to="{ name: 'category', params: { category: category.value, name: category.name, api: category.api } }"
+            :to="{ name: 'category', params: {
+              category: category.value,
+              name: category.name,
+              api: category.api,
+              key: category.key
+            } }"
             exact
           >
             {{ category.name }}
@@ -59,7 +64,4 @@ export default {
   text-decoration: underline;
 }
 
-.category-list .active {
-  font-weight: bold;
-}
 </style>

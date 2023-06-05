@@ -8,10 +8,10 @@
       </form>
     </div>
     <div class='right-section'>
-      <div class='card' v-for='(item, index) in data' :key='index'>
-
-        <div v-for='(value, key) in item' :key='key'>
-          <p>{{ key }}: {{ value }}</p>
+      <div class='card' v-for='(item) in data' :key='item[primaryKey]'>
+        <p>{{ item[primaryKey] }}</p>
+        <div v-for='(value, keyin) in item' :key='keyin'>
+          <p>{{ keyin }}: {{ value }}</p>
         </div>
       </div>
     </div>
@@ -37,7 +37,10 @@ export default {
   computed: {
     ...mapState({
       data: state => state.adminFeed.data
-    })
+    }),
+    primaryKey() {
+      return this.$route.params.key
+    }
   },
   mounted() {
     this.getFeed({apiUrl: this.$route.params.api})
