@@ -32,7 +32,7 @@
               class='nav-link'
               v-if='loggedUser'
               style='display: inline; text-decoration: none'
-              to='cabinet'>
+              :to='`/cabinet`'>
               {{ loggedUser.login }}
             </router-link>
             <span v-else @click='showDialogLoginWindow'>Личный кабинет</span>

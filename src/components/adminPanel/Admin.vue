@@ -37,7 +37,6 @@ export default {
 
 <style scoped>
 .admin-panel {
-  max-width: 800px;
   margin: 0 auto;
   height: 55em;
 }
