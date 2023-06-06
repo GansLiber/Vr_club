@@ -4,8 +4,10 @@ import About from '@/views/About'
 import Cabinet from '@/views/Cabinet'
 import store from '@/store'
 import kursAdmin from '@/components/adminPanel/Admin'
-import AdminCategory from '@/components/adminPanel/AdminCategory'
+import AdminMainForm from '@/components/adminPanel/AdminMainForm'
+import AdminCategories from '@/components/adminPanel/AdminCategories'
 import AdminLayout from '@/views/AdminLayout'
+import AdminCategoryItem from '@/components/adminPanel/AdminCategoryItem'
 
 const routes = [
   {
@@ -40,13 +42,19 @@ const routes = [
       {
         path: ':category',
         name: 'category',
-        component: AdminCategory,
+        component: AdminMainForm,
+      },
+      {
+        path: ':category/:id',
+        name: 'categoryItem',
+        component: AdminCategoryItem,
       },
     ],
   },
 ]
 
 const router = createRouter({
+  mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes,
 })

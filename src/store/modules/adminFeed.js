@@ -1,10 +1,12 @@
 import axios from 'axios'
 import adminFeedApi from '@/api/adminFeed/adminFeedApi'
+import {getItem, setItem} from '@/helpers/persistenceStorage'
 
 export const adminFeed = {
   state: () => ({
     data: null,
     errors: null,
+    currentParams: null,
   }),
 
   getters: {
@@ -14,6 +16,13 @@ export const adminFeed = {
   },
 
   mutations: {
+    setAdminFeedToStorage(state, payload) {
+      setItem('currentParams', payload)
+    },
+    getAdminFeedFromStorage(state) {
+      state.currentParams = getItem('currentParams')
+    },
+
     getFeedStart(state) {
       this.commit('global/setLoading', true)
       state.data = null
@@ -29,15 +38,17 @@ export const adminFeed = {
   },
 
   actions: {
-    getFeed(context, {apiUrl}) {
+    getFeed(context) {
       return new Promise((resolve) => {
         context.commit('getFeedStart')
         const token = context.getters.tokenUser
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
-        console.log('gg', apiUrl)
+        const apiUrl = getItem('currentParams')
+        console.log('ff', apiUrl.payload.api)
         adminFeedApi
-          .getFeed(apiUrl)
+          .getFeed(apiUrl.payload.api)
           .then((response) => {
+            context.commit('getAdminFeedFromStorage')
             context.commit('getFeedSuccess', response.data)
             resolve(response.data)
           })

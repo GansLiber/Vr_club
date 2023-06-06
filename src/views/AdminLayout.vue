@@ -1,7 +1,7 @@
 <template>
   <div class='main'>
     <h1>Админ Панель</h1>
-    <h3>{{ this.$route.params.name }}</h3>
+
     <div>
       <router-view></router-view>
     </div>
@@ -9,8 +9,11 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
-  name: 'AdminLayout'
+  name: 'AdminLayout',
+
 }
 </script>
 

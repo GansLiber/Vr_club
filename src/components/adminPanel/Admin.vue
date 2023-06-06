@@ -5,12 +5,10 @@
       <ul>
         <li v-for='category in categories' :key='category.value'>
           <router-link
-            :to="{ name: 'category', params: {
-              category: category.value,
-              name: category.name,
-              api: category.api,
-              key: category.key
-            } }"
+            @click='setCategoryToStorage(category)'
+            :to="{
+              name: 'category',
+              params: {category: category.value,}}"
             exact
           >
             {{ category.name }}
@@ -18,12 +16,14 @@
         </li>
       </ul>
     </div>
-    <router-view></router-view>
+
   </div>
 </template>
 
+
 <script>
 import categories from '@/data/admin/categories'
+import {mapMutations} from 'vuex'
 
 export default {
   name: 'kursAdmin',
@@ -33,9 +33,13 @@ export default {
     }
   },
   methods: {
-    isActiveCategory(categoryValue) {
-      return this.$route.params.category === categoryValue
+    ...mapMutations(['setAdminFeedToStorage']),
+    setCategoryToStorage(category) {
+      this.setAdminFeedToStorage({payload: category})
     }
+  },
+  computed() {
+
   }
 }
 </script>

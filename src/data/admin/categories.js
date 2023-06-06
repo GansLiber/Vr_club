@@ -5,14 +5,24 @@ const categories = [
     api: '/computers',
     key: 'computer_id',
   },
-  {value: 'games', name: 'Игры', api: '/games', key: 'game_id'},
+  {
+    value: 'games',
+    name: 'Игры',
+    api: '/games',
+    key: 'game_id',
+  },
   {
     value: 'reservations',
     name: 'Бронь',
     api: '/reservations',
     key: 'reservation_id',
   },
-  {value: 'rooms', name: 'Комноты', api: '/rooms', key: 'room_id'},
+  {
+    value: 'rooms',
+    name: 'Комноты',
+    api: '/rooms',
+    key: 'room_id',
+  },
   {
     value: 'vrdevices',
     name: 'ВР-устройства',

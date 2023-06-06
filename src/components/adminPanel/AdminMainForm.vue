@@ -1,28 +1,26 @@
 <template>
-
+  <h3>{{ categoryName }}</h3>
   <div class='categoryIn'>
     <div class='left-section'>
-      <form @submit.prevent='addItem'>
+      <form @submit.prevent=''>
         <input type='text' v-model='newItem' placeholder='Введите новый элемент' />
         <button type='submit'>Добавить</button>
       </form>
     </div>
     <div class='right-section'>
-      <div class='card' v-for='(item) in data' :key='item[primaryKey]'>
-        <p>{{ item[primaryKey] }}</p>
-        <div v-for='(value, keyin) in item' :key='keyin'>
-          <p>{{ keyin }}: {{ value }}</p>
-        </div>
-      </div>
+      <kurs-admin-categories />
     </div>
+
   </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex'
+import kursAdminCategories from '@/components/adminPanel/AdminCategories'
 
 export default {
-  name: 'kursAdminCategory',
+  name: 'kursAdminMainForm',
+  components: {kursAdminCategories},
   data() {
     return {
       newItem: ''
@@ -30,20 +28,18 @@ export default {
   },
   methods: {
     ...mapActions({
-      getFeed: 'getFeed',
-      addItem: 'addItem'
+      // addItem: 'addItem'
     })
   },
   computed: {
     ...mapState({
-      data: state => state.adminFeed.data
+      currentParams: state => state.adminFeed.currentParams
     }),
-    primaryKey() {
-      return this.$route.params.key
+    categoryName() {
+      return this.currentParams?.payload?.name
     }
   },
   mounted() {
-    this.getFeed({apiUrl: this.$route.params.api})
   }
 }
 </script>
@@ -85,11 +81,10 @@ input {
 
 button {
   padding: 6px 10px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 </style>
-
