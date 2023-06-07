@@ -4,12 +4,24 @@ const categories = [
     name: 'Компьютеры',
     api: '/computers',
     key: 'computer_id',
+    fields: [
+      {name: 'graphic_card', type: 'text', value: ''},
+      {name: 'processor', type: 'text', value: ''},
+      {name: 'ram', type: 'text', value: ''},
+    ],
   },
   {
     value: 'games',
     name: 'Игры',
     api: '/games',
     key: 'game_id',
+    fields: [
+      {name: 'game', type: 'text', value: ''},
+      {name: 'age_limit', type: 'number', value: ''},
+      {name: 'duration', type: 'number', value: ''},
+      {name: 'genre', type: 'text', value: ''},
+      {name: 'price', type: 'number', value: ''},
+    ],
   },
   {
     value: 'reservations',

@@ -39,7 +39,6 @@
         name='email'
         placehold='Почта'></kurs-input>
       <kurs-button :disabled='isLoading'>Войти</kurs-button>
-
     </form>
   </div>
 </template>

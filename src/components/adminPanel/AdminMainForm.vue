@@ -2,34 +2,24 @@
   <h3>{{ categoryName }}</h3>
   <div class='categoryIn'>
     <div class='left-section'>
-      <form @submit.prevent=''>
-        <input type='text' v-model='newItem' placeholder='Введите новый элемент' />
-        <button type='submit'>Добавить</button>
-      </form>
+      <kurs-admin-in-form></kurs-admin-in-form>
     </div>
     <div class='right-section'>
       <router-view />
     </div>
-
   </div>
 </template>
 
 <script>
 import {mapActions, mapMutations, mapState} from 'vuex'
 import kursAdminCategories from '@/components/adminPanel/AdminCategories'
+import kursAdminInForm from '@/components/adminPanel/AdminInForm'
 
 export default {
   name: 'kursAdminMainForm',
-  components: {kursAdminCategories},
-  data() {
-    return {
-      newItem: ''
-    }
-  },
+  components: {kursAdminCategories, kursAdminInForm},
+
   methods: {
-    ...mapActions({
-      // addItem: 'addItem'
-    }),
     ...mapMutations({
       getAdminFeedParams: 'getAdminParamsFromStorage'
     })
@@ -66,29 +56,9 @@ export default {
   flex-wrap: wrap;
 }
 
-.card {
-  flex: 0 0 calc(33.33% - 20px);
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
 p {
   color: #333;
   margin: 0;
 }
 
-input {
-  margin-right: 10px;
-}
-
-button {
-  padding: 6px 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
 </style>
