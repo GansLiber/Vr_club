@@ -30,6 +30,18 @@ const categories = [
     key: 'vr_device_id',
   },
   {
+    value: 'employees',
+    name: 'Сотрудники',
+    api: '/employees',
+    key: 'employee_id',
+  },
+  {
+    value: 'statuses',
+    name: 'Статусы',
+    api: '/statuses',
+    key: 'status_id',
+  },
+  {
     value: 'requests',
     name: 'Запросы на звонок',
     api: '/requests',

@@ -2,7 +2,7 @@
   <div class='card' v-for='(item) in data' :key='item[primaryKey]'>
     <router-link :to="{ name: 'categoryItem', params: { id: item[primaryKey] }}">
       <p>{{ item[primaryKey] }}</p>
-      <div v-for='(value, keyin) in item' :key='value'>
+      <div v-for='(value, keyin) in item'>
         <p>{{ keyin }}: {{ value }}</p>
       </div>
     </router-link>

@@ -1,7 +1,9 @@
 <template>
   <div class='main'>
-    <div v-for='(item, key) in singleItem'>
-      <p>{{ key }} : {{ item }}</p>
+    <div v-for='(item, key, i) in singleItem'>
+      <template v-if='i!==0'>
+        <p>{{ key }} : {{ item }}</p>
+      </template>
     </div>
   </div>
 </template>
