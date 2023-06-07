@@ -1,6 +1,6 @@
 <template>
   <div v-if='!this.$route.params.id'>
-    <h4>Добавить в бд</h4>
+    <h4>Добавить объект</h4>
     <form @submit.prevent=''>
       <div v-for='field in fields'>
         <label :for='field.name'>{{ field.name }}</label>
@@ -15,10 +15,10 @@
     </form>
   </div>
   <div v-else>
-    <h4>Изменить в бд</h4>
-    <form @submit.prevent=''>
+    <form v-if='singleItemData' @submit.prevent=''>
+      <h4>Изменить объект</h4>
       <div v-for='field in fields'>
-        <label :for='field'>{{ field.name }}</label>
+        <label :for='field.name'>{{ field.name }}</label>
         <kurs-input
           v-model.trim='singleItemData[field.name]'
           :type='field.type'
