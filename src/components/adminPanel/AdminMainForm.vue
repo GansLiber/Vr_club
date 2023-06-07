@@ -8,14 +8,14 @@
       </form>
     </div>
     <div class='right-section'>
-      <kurs-admin-categories />
+      <router-view />
     </div>
 
   </div>
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapMutations, mapState} from 'vuex'
 import kursAdminCategories from '@/components/adminPanel/AdminCategories'
 
 export default {
@@ -29,6 +29,9 @@ export default {
   methods: {
     ...mapActions({
       // addItem: 'addItem'
+    }),
+    ...mapMutations({
+      getAdminFeedParams: 'getAdminParamsFromStorage'
     })
   },
   computed: {
@@ -40,6 +43,7 @@ export default {
     }
   },
   mounted() {
+    this.getAdminFeedParams()
   }
 }
 </script>

@@ -43,11 +43,18 @@ const routes = [
         path: ':category',
         name: 'category',
         component: AdminMainForm,
-      },
-      {
-        path: ':category/:id',
-        name: 'categoryItem',
-        component: AdminCategoryItem,
+        children: [
+          {
+            path: '',
+            name: 'categoryList',
+            component: AdminCategories,
+          },
+          {
+            path: ':id',
+            name: 'categoryItem',
+            component: AdminCategoryItem,
+          },
+        ],
       },
     ],
   },

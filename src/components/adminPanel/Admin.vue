@@ -7,7 +7,7 @@
           <router-link
             @click='setCategoryToStorage(category)'
             :to="{
-              name: 'category',
+              name: 'categoryList',
               params: {category: category.value,}}"
             exact
           >

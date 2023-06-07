@@ -6,7 +6,7 @@
         <p>{{ keyin }}: {{ value }}</p>
       </div>
     </router-link>
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
@@ -16,10 +16,7 @@ import {mapActions, mapState} from 'vuex'
 export default {
   name: 'kursAdminCategories',
   methods: {
-    ...mapActions({
-      getFeed: 'getFeed',
-      addItem: 'addItem'
-    })
+    ...mapActions(['getFeed', 'addItem'])
   },
   computed: {
     ...mapState({
@@ -30,7 +27,6 @@ export default {
       return this.currentParams?.payload?.key
     }
   },
-  watch: {},
   mounted() {
     this.getFeed()
   }
