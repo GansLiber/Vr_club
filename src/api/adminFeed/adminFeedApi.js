@@ -8,4 +8,7 @@ const addItem = (addItem, credentials) => {
   return axios.post(addItem, credentials)
 }
 
-export default {getFeed, addItem}
+const changeItem = (changeItem, credentials) => {
+  return axios.put(changeItem, credentials)
+}
+export default {getFeed, addItem, changeItem}

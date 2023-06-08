@@ -15,7 +15,7 @@
     </form>
   </div>
   <div v-else>
-    <form v-if='singleItemData' @submit.prevent=''>
+    <form v-if='singleItemData' @submit.prevent='submitChange'>
       <h4>Изменить объект</h4>
       <div v-for='field in fields'>
         <label :for='field.name'>{{ field.name }}</label>
@@ -43,7 +43,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      addItem: 'addItem'
+      addItem: 'addItem',
+      changeItem: 'changeItem'
     }),
     submitAdd() {
       const formData = {}
@@ -52,6 +53,10 @@ export default {
       }
       console.log(formData)
       this.addItem(formData)
+    },
+    submitChange() {
+      const credentials = {item: this.singleItem, id: this.$route.params.id}
+      this.changeItem(credentials)
     }
   },
   computed: {

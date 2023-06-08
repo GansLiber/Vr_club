@@ -61,6 +61,18 @@ export const adminFeed = {
       this.commit('global/setLoading', false)
       state.errors = payload
     },
+
+    changeItemStart(state) {
+      this.commit('global/setLoading', true)
+      state.data = null
+    },
+    changeItemSuccess() {
+      this.commit('global/setLoading', false)
+    },
+    changeItemFailure(state, payload) {
+      this.commit('global/setLoading', false)
+      state.errors = payload
+    },
   },
 
   actions: {
@@ -121,6 +133,29 @@ export const adminFeed = {
           })
           .catch(() => {
             context.commit('sendItemFailure')
+          })
+      })
+    },
+    changeItem(context, credentials) {
+      return new Promise((resolve) => {
+        context.commit('changeItemStart')
+        const token = context.getters.tokenUser
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
+        const apiUrl = getItem('currentParams')
+        console.log('gg', credentials.id)
+        adminFeedApi
+          .changeItem(
+            apiUrl.payload.api + '/' + credentials.id,
+            credentials.item
+          )
+          .then((response) => {
+            // context.commit('getAdminParamsFromStorage')
+            context.commit('changeItemSuccess')
+            console.log('ww', response.data)
+            resolve(response.data)
+          })
+          .catch(() => {
+            context.commit('changeItemFailure')
           })
       })
     },
