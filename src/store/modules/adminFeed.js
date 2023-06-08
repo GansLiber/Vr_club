@@ -1,6 +1,7 @@
 import axios from 'axios'
 import adminFeedApi from '@/api/adminFeed/adminFeedApi'
 import {getItem, setItem} from '@/helpers/persistenceStorage'
+import router from '@/router'
 
 export const adminFeed = {
   state: () => ({
@@ -73,6 +74,20 @@ export const adminFeed = {
       this.commit('global/setLoading', false)
       state.errors = payload
     },
+
+    delItemStart(state) {
+      this.commit('global/setLoading', true)
+      state.data = null
+    },
+    delItemSuccess(state) {
+      this.commit('global/setLoading', false)
+      state.singleItem = null
+      router.go(-1)
+    },
+    delItemFailure(state, payload) {
+      this.commit('global/setLoading', false)
+      state.errors = payload
+    },
   },
 
   actions: {
@@ -106,7 +121,6 @@ export const adminFeed = {
           .then((response) => {
             // context.commit('getAdminParamsFromStorage')
             context.commit('getSingleItemSuccess', response.data)
-            console.log('ww', response.data)
             resolve(response.data)
           })
           .catch(() => {
@@ -127,7 +141,6 @@ export const adminFeed = {
             // context.commit('getAdminParamsFromStorage')
             context.dispatch('getFeed').then(() => {
               context.commit('sendItemSuccess')
-              console.log('ww', response.data)
               resolve(response.data)
             })
           })
@@ -142,7 +155,6 @@ export const adminFeed = {
         const token = context.getters.tokenUser
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
         const apiUrl = getItem('currentParams')
-        console.log('gg', credentials.id)
         adminFeedApi
           .changeItem(
             apiUrl.payload.api + '/' + credentials.id,
@@ -151,11 +163,28 @@ export const adminFeed = {
           .then((response) => {
             // context.commit('getAdminParamsFromStorage')
             context.commit('changeItemSuccess')
-            console.log('ww', response.data)
             resolve(response.data)
           })
           .catch(() => {
             context.commit('changeItemFailure')
+          })
+      })
+    },
+    delItem(context, id) {
+      return new Promise((resolve) => {
+        context.commit('delItemStart')
+        const token = context.getters.tokenUser
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
+        const apiUrl = getItem('currentParams')
+        adminFeedApi
+          .delItem(apiUrl.payload.api + '/' + id)
+          .then((response) => {
+            // context.commit('getAdminParamsFromStorage')
+            context.commit('delItemSuccess')
+            resolve(response.data)
+          })
+          .catch(() => {
+            context.commit('delItemFailure')
           })
       })
     },

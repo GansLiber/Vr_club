@@ -80,12 +80,4 @@ input {
   margin-right: 10px;
 }
 
-button {
-  padding: 6px 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
 </style>

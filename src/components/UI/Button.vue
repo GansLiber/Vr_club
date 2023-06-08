@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .myBtn {
   padding: 0.3em 2.15em;
   font-size: 1.5em;

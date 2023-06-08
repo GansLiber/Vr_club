@@ -11,4 +11,8 @@ const addItem = (addItem, credentials) => {
 const changeItem = (changeItem, credentials) => {
   return axios.put(changeItem, credentials)
 }
-export default {getFeed, addItem, changeItem}
+
+const delItem = (changeItem, credentials) => {
+  return axios.delete(changeItem, credentials)
+}
+export default {getFeed, addItem, changeItem, delItem}
