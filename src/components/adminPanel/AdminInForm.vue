@@ -7,7 +7,7 @@
         <kurs-input
           v-model.trim='field.value'
           :type='field.type'
-          :name='field.name'
+          :name='field.keyIn'
           :id='field.name'
           :placehold='field.name'></kurs-input>
       </div>
@@ -49,13 +49,24 @@ export default {
     submitAdd() {
       const formData = {}
       for (const field of this.fields) {
-        formData[field.name] = field.value
+        formData[field.keyIn] = field.value
       }
       console.log(formData)
       this.addItem(formData)
     },
     submitChange() {
-      const credentials = {item: this.singleItem, id: this.$route.params.id}
+
+      for (const field of this.fields) {
+        field.value = this.singleItemData[field.name]
+      }
+      console.log('this', this.fields)
+      const formData = {}
+
+      for (const field of this.fields) {
+        formData[field.keyIn] = field.value
+      }
+      console.log('kk', formData)
+      const credentials = {item: formData, id: this.$route.params.id}
       this.changeItem(credentials)
     }
   },

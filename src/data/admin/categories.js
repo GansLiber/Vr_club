@@ -5,9 +5,9 @@ const categories = [
     api: '/computers',
     key: 'computer_id',
     fields: [
-      {name: 'graphic_card', type: 'text', value: ''},
-      {name: 'processor', type: 'text', value: ''},
-      {name: 'ram', type: 'text', value: ''},
+      {keyIn: 'graphic_card', name: 'graphic_card', type: 'text', value: ''},
+      {keyIn: 'processor', name: 'processor', type: 'text', value: ''},
+      {keyIn: 'ram', name: 'ram', type: 'text', value: ''},
     ],
   },
   {
@@ -16,11 +16,11 @@ const categories = [
     api: '/games',
     key: 'game_id',
     fields: [
-      {name: 'game', type: 'text', value: ''},
-      {name: 'age_limit', type: 'number', value: ''},
-      {name: 'duration', type: 'number', value: ''},
-      {name: 'genre', type: 'text', value: ''},
-      {name: 'price', type: 'number', value: ''},
+      {keyIn: 'game', name: 'game', type: 'text', value: ''},
+      {keyIn: 'age_limit', name: 'age_limit', type: 'number', value: ''},
+      {keyIn: 'duration', name: 'duration', type: 'number', value: ''},
+      {keyIn: 'genre', name: 'genre', type: 'text', value: ''},
+      {keyIn: 'price', name: 'price', type: 'number', value: ''},
     ],
   },
   {
@@ -28,6 +28,44 @@ const categories = [
     name: 'Бронь',
     api: '/reservations',
     key: 'reservation_id',
+    fields: [
+      {
+        keyIn: 'login',
+        name: 'login',
+        type: 'text',
+        value: '',
+      },
+      {
+        keyIn: 'reservation_time',
+        name: 'reservation_time',
+        type: 'datetime-local',
+        value: '',
+      },
+      {
+        keyIn: 'peoples',
+        name: 'peoples',
+        type: 'number',
+        value: '',
+      },
+      {
+        keyIn: 'game_id',
+        name: 'game',
+        type: 'number',
+        value: '',
+      },
+      {
+        keyIn: 'room_id',
+        name: 'room',
+        type: 'number',
+        value: '',
+      },
+      {
+        keyIn: 'all_price',
+        name: 'all_price',
+        type: 'number',
+        value: '',
+      },
+    ],
   },
   {
     value: 'rooms',
@@ -52,6 +90,12 @@ const categories = [
     name: 'Статусы',
     api: '/statuses',
     key: 'status_id',
+  },
+  {
+    value: 'users',
+    name: 'Пользователи',
+    api: '/users',
+    key: 'user_id',
   },
   {
     value: 'requests',

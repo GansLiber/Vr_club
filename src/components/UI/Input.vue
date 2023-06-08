@@ -48,6 +48,7 @@ export default {
   border-radius: 25px;
 
   text-indent: 15px;
+  padding-right: 20px;
 }
 
 .form-group {

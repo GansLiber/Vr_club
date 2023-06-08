@@ -6,6 +6,7 @@
         <p>{{ keyin }}: {{ value }}</p>
       </div>
     </router-link>
+
     <router-view />
   </div>
 </template>

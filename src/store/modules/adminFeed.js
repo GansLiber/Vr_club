@@ -31,7 +31,7 @@ export const adminFeed = {
     },
     getFeedSuccess(state, payload) {
       this.commit('global/setLoading', false)
-      state.data = payload.data
+      state.data = payload.data.reverse()
     },
     getFeedFailure(state, payload) {
       this.commit('global/setLoading', false)
