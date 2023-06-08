@@ -4,4 +4,8 @@ const getFeed = (getFeed) => {
   return axios.get(getFeed)
 }
 
-export default {getFeed}
+const addItem = (addItem, credentials) => {
+  return axios.post(addItem, credentials)
+}
+
+export default {getFeed, addItem}

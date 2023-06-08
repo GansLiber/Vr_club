@@ -16,7 +16,7 @@ import {mapActions, mapState} from 'vuex'
 export default {
   name: 'kursAdminCategories',
   methods: {
-    ...mapActions(['getFeed', 'addItem'])
+    ...mapActions(['getFeed'])
   },
   computed: {
     ...mapState({

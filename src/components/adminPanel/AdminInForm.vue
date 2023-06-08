@@ -1,7 +1,7 @@
 <template>
   <div v-if='!this.$route.params.id'>
     <h4>Добавить объект</h4>
-    <form @submit.prevent=''>
+    <form @submit.prevent='submitAdd'>
       <div v-for='field in fields'>
         <label :for='field.name'>{{ field.name }}</label>
         <kurs-input
@@ -43,8 +43,16 @@ export default {
   },
   methods: {
     ...mapActions({
-      // addItem: 'addItem'
-    })
+      addItem: 'addItem'
+    }),
+    submitAdd() {
+      const formData = {}
+      for (const field of this.fields) {
+        formData[field.name] = field.value
+      }
+      console.log(formData)
+      this.addItem(formData)
+    }
   },
   computed: {
     ...mapState({
