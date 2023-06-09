@@ -3,13 +3,16 @@
     <h4>Добавить объект</h4>
     <form @submit.prevent='submitAdd'>
       <div v-for='field in fields'>
-        <label :for='field.name'>{{ field.name }}</label>
+        <label :for='field.name'>{{ field.keyIn }}</label>
         <kurs-input
           v-model.trim='field.value'
           :type='field.type'
           :name='field.keyIn'
           :id='field.name'
           :placehold='field.name'></kurs-input>
+      </div>
+      <div>
+        <select name='' id=''></select>
       </div>
       <kurs-button>Добавить</kurs-button>
     </form>
@@ -18,7 +21,7 @@
     <form v-if='singleItemData' @submit.prevent='submitChange'>
       <h4>Изменить объект</h4>
       <div v-for='field in fields'>
-        <label :for='field.name'>{{ field.name }}</label>
+        <label :for='field.name'>{{ field.keyIn }}</label>
         <kurs-input
           v-model.trim='singleItemData[field.name]'
           :type='field.type'

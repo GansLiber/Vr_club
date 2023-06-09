@@ -66,6 +66,7 @@ const categories = [
         value: '',
       },
     ],
+    sideFields: ['/users', '/games', '/rooms'],
   },
   {
     value: 'rooms',

@@ -3,7 +3,7 @@
     <div>
       <div v-for='(item, key, i) in singleItem'>
         <template v-if='i!==0'>
-          <p>{{ key }} : {{ item }}</p>
+          <p><span style='background-color: #bcdeff;'>{{ key }}</span> : {{ item }}</p>
         </template>
       </div>
       <kurs-button @click='delItem' class='card-btn'>Удалить</kurs-button>

@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'categoryItem', params: { id: item[primaryKey] }}">
       <p>{{ item[primaryKey] }}</p>
       <div v-for='(value, keyin) in item'>
-        <p>{{ keyin }}: {{ value }}</p>
+        <p><span style='background-color: #bcdeff'>{{ keyin }}</span>: {{ value }}</p>
       </div>
     </router-link>
 

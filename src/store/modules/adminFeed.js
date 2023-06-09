@@ -9,6 +9,7 @@ export const adminFeed = {
     errors: null,
     currentParams: null,
     singleItem: null,
+    sideFeeds: null,
   }),
 
   getters: {
