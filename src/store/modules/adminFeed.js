@@ -9,7 +9,7 @@ export const adminFeed = {
     errors: null,
     currentParams: null,
     singleItem: null,
-    sideFeeds: null,
+    sideFeedsStore: null,
   }),
 
   getters: {
@@ -35,6 +35,20 @@ export const adminFeed = {
       state.data = payload.data.reverse()
     },
     getFeedFailure(state, payload) {
+      this.commit('global/setLoading', false)
+      state.errors = payload
+    },
+
+    getSideFeedStart(state) {
+      this.commit('global/setLoading', true)
+      state.data = null
+    },
+    getSideFeedSuccess(state, payload) {
+      console.log(payload)
+      state.sideFeedsStore = payload
+      this.commit('global/setLoading', false)
+    },
+    getSideFeedFailure(state, payload) {
       this.commit('global/setLoading', false)
       state.errors = payload
     },
@@ -186,6 +200,36 @@ export const adminFeed = {
           })
           .catch(() => {
             context.commit('delItemFailure')
+          })
+      })
+    },
+    async getSideFeed(context) {
+      return new Promise((resolve, reject) => {
+        context.commit('getSideFeedStart')
+        const token = context.getters.tokenUser
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
+        const apiUrl = getItem('currentParams')
+        const sideRequests = []
+
+        if (!apiUrl.payload.sideFieldsLocal) {
+          return
+        }
+
+        for (const sideField of apiUrl.payload.sideFieldsLocal) {
+          sideRequests.push(adminFeedApi.getFeed(sideField.api))
+        }
+
+        Promise.all(sideRequests)
+          .then((responses) => {
+            context.commit('getAdminParamsFromStorage')
+            const allSide = responses.map((response) => response.data)
+
+            context.commit('getSideFeedSuccess', allSide)
+            resolve(responses.data)
+          })
+          .catch((error) => {
+            context.commit('getSideFeedFailure')
+            reject(error)
           })
       })
     },

@@ -51,6 +51,7 @@ export default {
   min-width: 20em;
   min-height: 20em;
   background-color: #fff;
+  padding: 10px;
 }
 
 .main > div:first-child {

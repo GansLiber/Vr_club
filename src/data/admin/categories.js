@@ -30,12 +30,6 @@ const categories = [
     key: 'reservation_id',
     fields: [
       {
-        keyIn: 'login',
-        name: 'login',
-        type: 'text',
-        value: '',
-      },
-      {
         keyIn: 'reservation_time',
         name: 'reservation_time',
         type: 'datetime-local',
@@ -48,31 +42,48 @@ const categories = [
         value: '',
       },
       {
-        keyIn: 'game_id',
-        name: 'game',
-        type: 'number',
-        value: '',
-      },
-      {
-        keyIn: 'room_id',
-        name: 'room',
-        type: 'number',
-        value: '',
-      },
-      {
         keyIn: 'all_price',
+
         name: 'all_price',
         type: 'number',
         value: '',
       },
     ],
-    sideFields: ['/users', '/games', '/rooms'],
+    sideFieldsLocal: [
+      {
+        keyIn: 'login',
+        api: '/users',
+        name: 'login',
+        type: 'text',
+        value: '',
+      },
+      {
+        keyIn: 'room_id',
+        api: '/rooms',
+        name: 'type_room',
+        type: 'number',
+        value: '',
+      },
+      {
+        keyIn: 'game_id',
+        api: '/games',
+        name: 'game',
+        type: 'number',
+        value: '',
+      },
+    ],
   },
   {
     value: 'rooms',
     name: 'Комноты',
     api: '/rooms',
     key: 'room_id',
+    fields: [
+      {keyIn: 'type_room', name: 'type_room', type: 'text', value: ''},
+      {keyIn: 'employee_id', name: 'employee_id', type: 'number', value: ''},
+      {keyIn: 'vr_device_id', name: 'vr_device_id', type: 'number', value: ''},
+      {keyIn: 'price', name: 'price', type: 'number', value: ''},
+    ],
   },
   {
     value: 'vrdevices',

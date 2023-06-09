@@ -11,14 +11,27 @@
           :id='field.name'
           :placehold='field.name'></kurs-input>
       </div>
-      <div>
-        <select name='' id=''></select>
+      <div v-if='sideFieldsLocal && sideFieldsStore'>
+        <div v-for='(sideField, index) in sideFieldsLocal'>
+          <label :for="'sideField-' + index">{{ sideField.name }}</label>
+          <kurs-select
+            v-model='sideField.value'
+            :name='sideField.keyIn'
+            :id="'sideField-' + index">
+            <option
+              v-for='subSide in sideFieldsStore[index].data'
+              :value='subSide[sideField.keyIn]'>
+              {{ subSide[sideField.name] }}
+            </option>
+          </kurs-select>
+        </div>
       </div>
       <kurs-button>Добавить</kurs-button>
     </form>
   </div>
   <div v-else>
     <form v-if='singleItemData' @submit.prevent='submitChange'>
+
       <h4>Изменить объект</h4>
       <div v-for='field in fields'>
         <label :for='field.name'>{{ field.keyIn }}</label>
@@ -36,9 +49,11 @@
 
 <script>
 import {mapActions, mapState} from 'vuex'
+import KursSelect from '@/components/UI/Select'
 
 export default {
   name: 'kursAdminInForm',
+  components: {KursSelect},
   data() {
     return {
       newItem: ''
@@ -47,7 +62,8 @@ export default {
   methods: {
     ...mapActions({
       addItem: 'addItem',
-      changeItem: 'changeItem'
+      changeItem: 'changeItem',
+      getSideFeed: 'getSideFeed'
     }),
     submitAdd() {
       const formData = {}
@@ -58,17 +74,20 @@ export default {
       this.addItem(formData)
     },
     submitChange() {
+      if (!this.singleItemData) {
+        return
+      }
 
       for (const field of this.fields) {
         field.value = this.singleItemData[field.name]
       }
-      console.log('this', this.fields)
+
       const formData = {}
 
       for (const field of this.fields) {
         formData[field.keyIn] = field.value
       }
-      console.log('kk', formData)
+
       const credentials = {item: formData, id: this.$route.params.id}
       this.changeItem(credentials)
     }
@@ -76,14 +95,25 @@ export default {
   computed: {
     ...mapState({
       currentParams: state => state.adminFeed.currentParams,
-      singleItem: state => state.adminFeed.singleItem
+      singleItem: state => state.adminFeed.singleItem,
+      sideFieldsFromStore: state => state.adminFeed.sideFeedsStore
     }),
     fields() {
       return this.currentParams?.payload?.fields
     },
+    sideFieldsLocal() {
+      return this.currentParams?.payload?.sideFieldsLocal
+    },
+    sideFieldsStore() {
+      return this.sideFieldsFromStore
+    },
     singleItemData() {
       return this.singleItem
     }
+  },
+
+  async mounted() {
+    await this.getSideFeed()
   }
 }
 </script>
