@@ -42,6 +42,21 @@
           :id='field.name'
           :placehold='field.name'></kurs-input>
       </div>
+      <div v-if='sideFieldsLocal && sideFieldsStore'>
+        <div v-for='(sideField, index) in sideFieldsLocal'>
+          <label :for="'sideField-' + index">{{ sideField.name }}</label>
+          <kurs-select
+            v-model='singleItemData[sideField.keyIn]'
+            :name='sideField.keyIn'
+            :id="'sideField-' + index">
+            <option
+              v-for='subSide in sideFieldsStore[index].data'
+              :value='subSide[sideField.keyIn]'>
+              {{ subSide[sideField.name] }}
+            </option>
+          </kurs-select>
+        </div>
+      </div>
       <kurs-button>Изменить</kurs-button>
     </form>
   </div>
@@ -70,6 +85,9 @@ export default {
       for (const field of this.fields) {
         formData[field.keyIn] = field.value
       }
+      for (const sideField of this.sideFieldsLocal) {
+        formData[sideField.keyIn] = sideField.value
+      }
       console.log(formData)
       this.addItem(formData)
     },
@@ -87,6 +105,7 @@ export default {
       for (const field of this.fields) {
         formData[field.keyIn] = field.value
       }
+
 
       const credentials = {item: formData, id: this.$route.params.id}
       this.changeItem(credentials)
