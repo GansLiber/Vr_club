@@ -13,7 +13,7 @@
       </div>
       <div v-if='sideFieldsLocal && sideFieldsStore'>
         <div v-for='(sideField, index) in sideFieldsLocal'>
-          <label :for="'sideField-' + index">{{ sideField.name }}</label>
+          <label :for="'sideField-' + index">{{ sideField.subName }}</label>
           <kurs-select
             v-model='sideField.value'
             :name='sideField.keyIn'

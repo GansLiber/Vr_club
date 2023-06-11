@@ -83,9 +83,25 @@ const categories = [
     key: 'room_id',
     fields: [
       {keyIn: 'type_room', name: 'type_room', type: 'text', value: ''},
-      {keyIn: 'employee_id', name: 'employee_id', type: 'number', value: ''},
-      {keyIn: 'vr_device_id', name: 'vr_device_id', type: 'number', value: ''},
       {keyIn: 'price', name: 'price', type: 'number', value: ''},
+    ],
+    sideFieldsLocal: [
+      {
+        keyIn: 'employee_id',
+        api: '/employees',
+        name: 'name',
+        subName: 'employee',
+        type: 'text',
+        value: '',
+      },
+      {
+        keyIn: 'vr_device_id',
+        api: '/vrdevices',
+        name: 'vr_glasses',
+        subName: 'vr_device_id',
+        type: 'number',
+        value: '',
+      },
     ],
   },
   {
@@ -93,12 +109,44 @@ const categories = [
     name: 'ВР-устройства',
     api: '/vrdevices',
     key: 'vr_device_id',
+    fields: [
+      {keyIn: 'vr_glasses', name: 'vr_glasses', type: 'text', value: ''},
+      {keyIn: 'controller', name: 'controller', type: 'text', value: ''},
+    ],
+    sideFieldsLocal: [
+      {
+        keyIn: 'computer_id',
+        api: '/computers',
+        name: 'computer_id',
+        subName: 'computer_id',
+        type: 'text',
+        value: '',
+      },
+    ],
   },
   {
     value: 'employees',
     name: 'Сотрудники',
     api: '/employees',
     key: 'employee_id',
+    fields: [
+      {keyIn: 'name', name: 'name', type: 'text', value: ''},
+      {keyIn: 'surname', name: 'surname', type: 'text', value: ''},
+      {keyIn: 'mid_name', name: 'mid_name', type: 'text', value: ''},
+      {keyIn: 'salary', name: 'salary', type: 'number', value: ''},
+      {keyIn: 'title', name: 'title', type: 'text', value: ''},
+      {keyIn: 'phone_number', name: 'phone_number', type: 'text', value: ''},
+    ],
+    sideFieldsLocal: [
+      {
+        keyIn: 'status_id',
+        api: '/statuses',
+        name: 'status_id',
+        subName: 'status',
+        type: 'text',
+        value: '',
+      },
+    ],
   },
   {
     value: 'statuses',
