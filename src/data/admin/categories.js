@@ -153,12 +153,30 @@ const categories = [
     name: 'Статусы',
     api: '/statuses',
     key: 'status_id',
+    fields: [{keyIn: 'status', name: 'status', type: 'text', value: ''}],
   },
   {
     value: 'users',
     name: 'Пользователи',
     api: '/users',
     key: 'user_id',
+    fields: [
+      {keyIn: 'name', name: 'name', type: 'text', value: ''},
+      {keyIn: 'surname', name: 'surname', type: 'text', value: ''},
+      {keyIn: 'login', name: 'login', type: 'text', value: ''},
+      {keyIn: 'password', name: 'password', type: 'password', value: ''},
+      {keyIn: 'email', name: 'email', type: 'email', value: ''},
+    ],
+    sideFieldsLocal: [
+      {
+        keyIn: 'role_id',
+        api: '/roles',
+        name: 'role',
+        subName: 'role',
+        type: 'text',
+        value: '',
+      },
+    ],
   },
   {
     value: 'requests',

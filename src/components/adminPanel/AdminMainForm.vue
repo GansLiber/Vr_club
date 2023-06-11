@@ -1,7 +1,7 @@
 <template>
   <h3>{{ categoryName }}</h3>
   <div class='categoryIn'>
-    <div class='left-section'>
+    <div class='left-section' v-if='fields'>
       <kurs-admin-in-form></kurs-admin-in-form>
     </div>
     <div class='right-section'>
@@ -30,6 +30,9 @@ export default {
     }),
     categoryName() {
       return this.currentParams?.payload?.name
+    },
+    fields() {
+      return this.currentParams?.payload?.fields
     }
   },
   mounted() {

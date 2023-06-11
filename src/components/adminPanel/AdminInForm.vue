@@ -85,8 +85,10 @@ export default {
       for (const field of this.fields) {
         formData[field.keyIn] = field.value
       }
-      for (const sideField of this.sideFieldsLocal) {
-        formData[sideField.keyIn] = sideField.value
+      if (this.sideFieldsLocal) {
+        for (const sideField of this.sideFieldsLocal) {
+          formData[sideField.keyIn] = sideField.value
+        }
       }
       console.log(formData)
       this.addItem(formData)
@@ -106,8 +108,11 @@ export default {
         formData[field.keyIn] = field.value
       }
 
-      for (const sideField of this.sideFieldsLocal) {
-        formData[sideField.keyIn] = this.singleItemData[sideField.subName]
+
+      if (this.sideFieldsLocal) {
+        for (const sideField of this.sideFieldsLocal) {
+          formData[sideField.keyIn] = this.singleItemData[sideField.subName]
+        }
       }
 
       const credentials = {item: formData, id: this.$route.params.id}
