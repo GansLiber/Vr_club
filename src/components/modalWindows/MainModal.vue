@@ -11,6 +11,7 @@
       v-show='dialogWindows[5].value' />
     <kurs-text-multy-modal :text-modal='textSuccessConfirm' v-show='dialogWindows[3].value' />
     <kurs-text-multy-modal :text-modal='textFailureConfirm' v-show='dialogWindows[4].value' />
+    <kurs-text-multy-modal :text-modal='textFailureData' v-show='dialogWindows[6].value' />
 
   </kurs-dialog-window>
 </template>
@@ -29,7 +30,8 @@ export default {
       textConfirm: 'Вам отправлено подтверждение на почту',
       textProtect: 'Вам нужно сначала авторизироваться',
       textSuccessConfirm: 'Ожидайте, перезвоним сию минуту',
-      textFailureConfirm: 'Ошибка, неправильно ввели данные'
+      textFailureConfirm: 'Ошибка, неправильно ввели данные',
+      textFailureData: 'Ошибка, неправильно ввели данные, габелла'
     }
   },
   computed: {

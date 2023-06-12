@@ -17,7 +17,7 @@ import {mapActions, mapState} from 'vuex'
 export default {
   name: 'kursAdminCategories',
   methods: {
-    ...mapActions(['getFeed'])
+    ...mapActions(['getFeed', 'getSideFeed'])
   },
   computed: {
     ...mapState({
@@ -30,6 +30,7 @@ export default {
   },
   mounted() {
     this.getFeed()
+    this.getSideFeed()
   }
 }
 </script>

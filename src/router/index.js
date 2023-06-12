@@ -25,13 +25,10 @@ const routes = [
     name: 'cabinet',
     component: Cabinet,
   },
-  // {
-  //   path: '/admin/:category',
-  //   name: 'category',
-  //   component: AdminCategory,
-  // },
+
   {
     path: '/admin',
+    name: 'admin',
     component: AdminLayout,
     children: [
       {
@@ -67,9 +64,19 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (!store.state.auth.isAdmin && to.name === 'admin') {
+    next('/')
+    console.log('gabella')
+    // store.commit('setSingleDialogVisible', 'dialogProtectVisible')
+  } else {
+    next()
+  }
+})
+
+router.beforeEach((to, from, next) => {
   if (!store.state.auth.isLoggedIn && to.name === 'cabinet') {
     next('/')
-    store.commit('setSingleDialogVisible', 'dialogProtectVisible')
+    store.commit('setSingleDialogVisible', 'dialogProtectLoginVisible')
   } else {
     next()
   }

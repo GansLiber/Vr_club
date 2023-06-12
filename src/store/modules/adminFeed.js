@@ -19,6 +19,13 @@ export const adminFeed = {
   },
 
   mutations: {
+    dataReset(state) {
+      state.data = null
+      state.errors = null
+      state.singleItem = null
+      state.sideFeedsStore = null
+    },
+
     setAdminFeedToStorage(state, payload) {
       setItem('currentParams', payload)
     },
@@ -26,9 +33,9 @@ export const adminFeed = {
       state.currentParams = getItem('currentParams')
     },
 
-    getFeedStart(state) {
+    getFeedStart() {
       this.commit('global/setLoading', true)
-      state.data = null
+      this.commit('dataReset')
     },
     getFeedSuccess(state, payload) {
       this.commit('global/setLoading', false)
@@ -39,9 +46,9 @@ export const adminFeed = {
       state.errors = payload
     },
 
-    getSideFeedStart(state) {
+    getSideFeedStart() {
       this.commit('global/setLoading', true)
-      state.data = null
+      this.commit('dataReset')
     },
     getSideFeedSuccess(state, payload) {
       console.log(payload)
@@ -53,9 +60,9 @@ export const adminFeed = {
       state.errors = payload
     },
 
-    getSingleItemStart(state) {
+    getSingleItemStart() {
       this.commit('global/setLoading', true)
-      state.data = null
+      this.commit('dataReset')
     },
     getSingleItemSuccess(state, payload) {
       this.commit('global/setLoading', false)
@@ -66,9 +73,9 @@ export const adminFeed = {
       state.errors = payload
     },
 
-    sendItemStart(state) {
+    sendItemStart() {
       this.commit('global/setLoading', true)
-      state.data = null
+      this.commit('dataReset')
     },
     sendItemSuccess() {
       this.commit('global/setLoading', false)
@@ -78,9 +85,9 @@ export const adminFeed = {
       state.errors = payload
     },
 
-    changeItemStart(state) {
+    changeItemStart() {
       this.commit('global/setLoading', true)
-      state.data = null
+      this.commit('dataReset')
     },
     changeItemSuccess() {
       this.commit('global/setLoading', false)
@@ -90,13 +97,13 @@ export const adminFeed = {
       state.errors = payload
     },
 
-    delItemStart(state) {
+    delItemStart() {
       this.commit('global/setLoading', true)
-      state.data = null
+      this.commit('dataReset')
     },
-    delItemSuccess(state) {
+    delItemSuccess() {
       this.commit('global/setLoading', false)
-      state.singleItem = null
+      this.commit('dataReset')
       router.go(-1)
     },
     delItemFailure(state, payload) {
@@ -120,6 +127,10 @@ export const adminFeed = {
             resolve(response.data)
           })
           .catch(() => {
+            context.commit(
+              'setSingleDialogVisible',
+              'dialogFailureSendDataVisible'
+            )
             context.commit('getFeedFailure')
           })
       })
@@ -139,6 +150,10 @@ export const adminFeed = {
             resolve(response.data)
           })
           .catch(() => {
+            context.commit(
+              'setSingleDialogVisible',
+              'dialogFailureSendDataVisible'
+            )
             context.commit('getSingleItemFailure')
           })
       })
@@ -160,6 +175,10 @@ export const adminFeed = {
             })
           })
           .catch(() => {
+            context.commit(
+              'setSingleDialogVisible',
+              'dialogFailureSendDataVisible'
+            )
             context.commit('sendItemFailure')
           })
       })
@@ -181,6 +200,10 @@ export const adminFeed = {
             resolve(response.data)
           })
           .catch(() => {
+            context.commit(
+              'setSingleDialogVisible',
+              'dialogFailureSendDataVisible'
+            )
             context.commit('changeItemFailure')
           })
       })
@@ -199,6 +222,10 @@ export const adminFeed = {
             resolve(response.data)
           })
           .catch(() => {
+            context.commit(
+              'setSingleDialogVisible',
+              'dialogFailureSendDataVisible'
+            )
             context.commit('delItemFailure')
           })
       })
@@ -210,7 +237,7 @@ export const adminFeed = {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
         const apiUrl = getItem('currentParams')
         const sideRequests = []
-
+        console.log('pap')
         if (!apiUrl.payload.sideFieldsLocal) {
           return
         }
@@ -228,6 +255,10 @@ export const adminFeed = {
             resolve(responses.data)
           })
           .catch((error) => {
+            context.commit(
+              'setSingleDialogVisible',
+              'dialogFailureSendDataVisible'
+            )
             context.commit('getSideFeedFailure')
             reject(error)
           })
