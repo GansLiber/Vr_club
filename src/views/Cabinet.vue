@@ -2,13 +2,17 @@
   <div class='main'>
     <div>
       <h2 v-if='loginUser' style='color: white'>{{ loginUser.login }}</h2>
-      <router-link to='admin'>Админ панель</router-link>
+      <div v-if='isAdmin===1'>
+        <router-link to='admin'>Админ панель</router-link>
+      </div>
       <kurs-button @click='logout'>Выход</kurs-button>
     </div>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
   name: 'Cabinet',
   components: {},
@@ -22,6 +26,9 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      isAdmin: state => state.auth.isAdmin
+    }),
     loginUser() {
       return this.$store.state.auth.currentUser
     }

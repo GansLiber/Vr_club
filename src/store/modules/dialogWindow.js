@@ -10,6 +10,7 @@ export const dialogWindow = {
       {name: 'dialogFailureSendVisible', value: false},
       {name: 'dialogProtectLoginVisible', value: false},
       {name: 'dialogFailureSendDataVisible', value: false},
+      {name: 'dialogProtectLoginAdminVisible', value: false},
     ],
     showWindow: false,
   }),

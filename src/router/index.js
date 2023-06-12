@@ -30,26 +30,41 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: AdminLayout,
+    meta: {
+      requiresAdmin: true,
+    },
     children: [
       {
         path: '',
         name: 'categories',
         component: kursAdmin,
+        meta: {
+          requiresAdmin: true,
+        },
       },
       {
         path: ':category',
         name: 'category',
         component: AdminMainForm,
+        meta: {
+          requiresAdmin: true,
+        },
         children: [
           {
             path: '',
             name: 'categoryList',
             component: AdminCategories,
+            meta: {
+              requiresAdmin: true,
+            },
           },
           {
             path: ':id',
             name: 'categoryItem',
             component: AdminCategoryItem,
+            meta: {
+              requiresAdmin: true,
+            },
           },
         ],
       },
@@ -64,19 +79,22 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (!store.state.auth.isAdmin && to.name === 'admin') {
+  if (!store.state.auth.isLoggedIn && to.name === 'cabinet') {
     next('/')
-    console.log('gabella')
-    // store.commit('setSingleDialogVisible', 'dialogProtectVisible')
+    store.commit('setSingleDialogVisible', 'dialogProtectLoginVisible')
   } else {
     next()
   }
 })
 
 router.beforeEach((to, from, next) => {
-  if (!store.state.auth.isLoggedIn && to.name === 'cabinet') {
-    next('/')
-    store.commit('setSingleDialogVisible', 'dialogProtectLoginVisible')
+  if (to.matched.some((record) => record.meta.requiresAdmin)) {
+    if (store.state.auth.isAdmin === 2) {
+      next('/')
+      store.commit('setSingleDialogVisible', 'dialogProtectLoginAdminVisible')
+    } else {
+      next()
+    }
   } else {
     next()
   }

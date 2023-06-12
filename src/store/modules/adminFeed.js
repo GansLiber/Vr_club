@@ -51,7 +51,6 @@ export const adminFeed = {
       this.commit('dataReset')
     },
     getSideFeedSuccess(state, payload) {
-      console.log(payload)
       state.sideFeedsStore = payload
       this.commit('global/setLoading', false)
     },
@@ -237,7 +236,6 @@ export const adminFeed = {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
         const apiUrl = getItem('currentParams')
         const sideRequests = []
-        console.log('pap')
         if (!apiUrl.payload.sideFieldsLocal) {
           return
         }

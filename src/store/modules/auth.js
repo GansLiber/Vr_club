@@ -27,7 +27,6 @@ export const auth = {
     },
     loginSuccess(state, payload) {
       this.commit('global/setLoading', false)
-      console.log(payload)
       state.currentUser = payload.credentials
       state.tokenUser = payload.response.data.bearer
       state.isLoggedIn = true
@@ -77,7 +76,7 @@ export const auth = {
       this.commit('global/setLoading', true)
       state.validationErrors = null
     },
-    registerSuccess(state) {
+    registerSuccess() {
       this.commit('global/setLoading', false)
     },
     registerFailure(state, payload) {
@@ -96,7 +95,7 @@ export const auth = {
       this.commit('global/setLoading', true)
       state.validationErrors = null
     },
-    requestCallSuccess(state) {
+    requestCallSuccess() {
       this.commit('global/setLoading', false)
       // окно удачной отправки
     },
@@ -123,7 +122,6 @@ export const auth = {
             resolve(response.data)
           })
           .catch((result) => {
-            console.log('gf', result.response.data)
             context.commit('loginFailure', result.response.data)
           })
       })
@@ -138,7 +136,6 @@ export const auth = {
             context.commit('registerSuccess')
             context.commit('setSingleDialogVisible', 'dialogConfirmVisible')
             resolve(response.data)
-            console.log('gg', response.data)
           })
           .catch((result) => {
             context.commit('registerFailure', result.response.data)
@@ -148,7 +145,6 @@ export const auth = {
 
     requestCall(context, credentials) {
       return new Promise((resolve) => {
-        console.log('wp', credentials)
         context.commit('requestCallStart')
         authApi
           .requestCall(credentials)
