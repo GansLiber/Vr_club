@@ -10,7 +10,7 @@
         name='name'
         placehold='Ваше имя'
       />
-      <input v-model.trim='phoneNumber' id='tel' class='inp-form-home' type='tel' placeholder='8(9__) '
+      <input v-model.trim='phoneNumber' id='tel' class='inp-form-home' type='tel' required placeholder='8(9__) '
              v-mask="['8(9##) ###-##-##', '8(9##) ###-##-##']">
 
       <kurs-button>Заказать звонок</kurs-button>
@@ -21,6 +21,7 @@
 <script>
 import {mask} from 'vue-the-mask'
 import KursTextMultyModal from '@/components/modalWindows/textMultyModal'
+import {mapMutations} from 'vuex'
 
 export default {
   directives: {mask},
@@ -34,13 +35,17 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      showCapcha: 'setSingleDialogVisible'
+    }),
     onSubmit() {
-      this.$store.dispatch('requestCall', {
-        name: this.name,
-        phone_number: this.phoneNumber
-      }).then()
-      this.name = ''
-      this.phoneNumber = ''
+      this.showCapcha('dialogCapchaVisible')
+      // this.$store.dispatch('requestCall', {
+      //   name: this.name,
+      //   phone_number: this.phoneNumber
+      // }).then()
+      // this.name = ''
+      // this.phoneNumber = ''
     }
   },
   computed: {}

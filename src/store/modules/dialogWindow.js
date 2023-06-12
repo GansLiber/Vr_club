@@ -11,6 +11,7 @@ export const dialogWindow = {
       {name: 'dialogProtectLoginVisible', value: false},
       {name: 'dialogFailureSendDataVisible', value: false},
       {name: 'dialogProtectLoginAdminVisible', value: false},
+      {name: 'dialogCapchaVisible', value: false},
     ],
     showWindow: false,
   }),

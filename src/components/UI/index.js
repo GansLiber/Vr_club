@@ -5,6 +5,7 @@ import kursSoundButton from '@/components/UI/SoundButton'
 import kursTopicText from '@/components/UI/TopicText'
 import kursLoader from '@/components/UI/Loader'
 import kursSelect from '@/components/UI/Select'
+import kursReCapcha from '@/components/UI/ReCapcha'
 
 export default [
   kursButton,
@@ -14,4 +15,5 @@ export default [
   kursTopicText,
   kursLoader,
   kursSelect,
+  kursReCapcha,
 ]

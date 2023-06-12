@@ -15,7 +15,7 @@
     <kurs-text-multy-modal
       :text-modal='textProtectAdmin'
       v-show='dialogWindows[7].value' />
-
+    <kurs-re-capcha v-show='dialogWindows[8].value'></kurs-re-capcha>
   </kurs-dialog-window>
 </template>
 
@@ -35,7 +35,7 @@ export default {
       textProtectAdmin: 'Вы не администратор (пока что)',
       textSuccessConfirm: 'Ожидайте, перезвоним сию минуту',
       textFailureConfirm: 'Ошибка, неправильно ввели данные',
-      textFailureData: 'Ошибка, неправильно ввели данные, габелла'
+      textFailureData: 'Ошибка'
     }
   },
   computed: {
