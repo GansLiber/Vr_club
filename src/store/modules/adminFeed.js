@@ -33,9 +33,10 @@ export const adminFeed = {
       state.currentParams = getItem('currentParams')
     },
 
-    getFeedStart() {
+    getFeedStart(state) {
       this.commit('global/setLoading', true)
-      this.commit('dataReset')
+      state.data = null
+      state.errors = null
     },
     getFeedSuccess(state, payload) {
       this.commit('global/setLoading', false)
@@ -59,9 +60,11 @@ export const adminFeed = {
       state.errors = payload
     },
 
-    getSingleItemStart() {
+    getSingleItemStart(state) {
       this.commit('global/setLoading', true)
-      this.commit('dataReset')
+      state.data = null
+      state.errors = null
+      state.singleItem = null
     },
     getSingleItemSuccess(state, payload) {
       this.commit('global/setLoading', false)
@@ -72,21 +75,21 @@ export const adminFeed = {
       state.errors = payload
     },
 
-    sendItemStart() {
+    addItemStart() {
       this.commit('global/setLoading', true)
-      this.commit('dataReset')
     },
-    sendItemSuccess() {
+    addItemSuccess() {
       this.commit('global/setLoading', false)
     },
-    sendItemFailure(state, payload) {
+    addItemFailure(state, payload) {
       this.commit('global/setLoading', false)
       state.errors = payload
     },
 
-    changeItemStart() {
+    changeItemStart(state) {
       this.commit('global/setLoading', true)
-      this.commit('dataReset')
+      state.data = null
+      state.errors = null
     },
     changeItemSuccess() {
       this.commit('global/setLoading', false)
@@ -159,7 +162,7 @@ export const adminFeed = {
     },
     addItem(context, credentials) {
       return new Promise((resolve) => {
-        context.commit('sendItemStart')
+        context.commit('addItemStart')
         const token = context.getters.tokenUser
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
         const apiUrl = getItem('currentParams')
@@ -169,7 +172,7 @@ export const adminFeed = {
           .then((response) => {
             // context.commit('getAdminParamsFromStorage')
             context.dispatch('getFeed').then(() => {
-              context.commit('sendItemSuccess')
+              context.commit('addItemSuccess')
               resolve(response.data)
             })
           })
@@ -178,7 +181,7 @@ export const adminFeed = {
               'setSingleDialogVisible',
               'dialogFailureSendDataVisible'
             )
-            context.commit('sendItemFailure')
+            context.commit('addItemFailure')
           })
       })
     },

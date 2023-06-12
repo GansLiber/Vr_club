@@ -41,13 +41,6 @@ const categories = [
         type: 'number',
         value: '',
       },
-      {
-        keyIn: 'all_price',
-
-        name: 'all_price',
-        type: 'number',
-        value: '',
-      },
     ],
     sideFieldsLocal: [
       {
