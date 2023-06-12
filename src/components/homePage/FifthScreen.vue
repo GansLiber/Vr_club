@@ -2,6 +2,7 @@
   <div class='fifth-screen'>
     <kurs-topic-text :topText='topText' />
     <p class='text-center'>Моментально перезвоним</p>
+
     <form class='container-form' @submit.prevent='onSubmit'>
       <kurs-input
         class='inp-form-home'
@@ -10,11 +11,19 @@
         name='name'
         placehold='Ваше имя'
       />
-      <input v-model.trim='phoneNumber' id='tel' class='inp-form-home' type='tel' required placeholder='8(9__) '
-             v-mask="['8(9##) ###-##-##', '8(9##) ###-##-##']">
+      <input
+        v-model.trim='phoneNumber'
+        id='tel'
+        class='inp-form-home'
+        type='tel'
+        required
+        @input='validatePhoneNumber'
+        placeholder='8(9__) '
+        v-mask="['8(9##) ###-##-##', '8(9##) ###-##-##']">
 
-      <kurs-button>Заказать звонок</kurs-button>
+      <kurs-button :disabled='phoneNumberInvalid'>Заказать звонок</kurs-button>
     </form>
+    <p class='sub-text' v-if='phoneNumberInvalid'>Номер телефона должен содержать 11 цифр</p>
   </div>
 </template>
 
@@ -31,13 +40,26 @@ export default {
     return {
       topText: 'Есть вопросы или хотите записаться?',
       name: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      phoneNumberInvalid: false
     }
   },
   methods: {
     ...mapMutations({
       showCapcha: 'setSingleDialogVisible'
     }),
+    validatePhoneNumber() {
+      const totalCharacters = this.phoneNumber.length
+      if (totalCharacters !== 16) {
+        this.phoneNumberInvalid = true
+        // Установить значение инпута обратно на предыдущее корректное значение
+        this.$nextTick(() => {
+          this.phoneNumber = this.phoneNumber.slice(0, 16)
+        })
+      } else {
+        this.phoneNumberInvalid = false
+      }
+    },
     onSubmit() {
       this.showCapcha('dialogCapchaVisible')
       // this.$store.dispatch('requestCall', {
@@ -57,6 +79,7 @@ export default {
   max-width: 75%;
   margin: 0 auto;
   height: 20em;
+  position: relative;
 }
 
 .container-form {
@@ -76,10 +99,18 @@ export default {
   text-indent: 15px;
 }
 
+.sub-text {
+  color: white;
+
+  bottom: 50%;
+  left: 50%;
+  text-align: center;
+}
+
 .text-center {
   color: #fff;
   position: relative;
-  bottom: 3em;
+  bottom: 1em;
   font-size: 20px;
 }
 </style>
