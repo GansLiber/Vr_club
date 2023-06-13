@@ -8,6 +8,9 @@ import AdminMainForm from '@/components/adminPanel/AdminMainForm'
 import AdminCategories from '@/components/adminPanel/AdminCategories'
 import AdminLayout from '@/views/AdminLayout'
 import AdminCategoryItem from '@/components/adminPanel/AdminCategoryItem'
+import Reservation from '@/views/Reservation'
+import Price from '@/views/Price'
+import Promotions from '@/views/Promotions'
 
 const routes = [
   {
@@ -20,6 +23,23 @@ const routes = [
     name: 'about',
     component: About,
   },
+
+  {
+    path: '/reservation',
+    name: 'reservation',
+    component: Reservation,
+  },
+  {
+    path: '/price',
+    name: 'price',
+    component: Price,
+  },
+  {
+    path: '/promotions',
+    name: 'promotions',
+    component: Promotions,
+  },
+
   {
     path: '/cabinet',
     name: 'cabinet',

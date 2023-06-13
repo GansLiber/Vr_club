@@ -82,11 +82,16 @@ export default {
 }
 
 .captcha button {
+  transition: background-color 0.3s ease;
   padding: 5px 10px;
-  background-color: #4CAF50;
+  background-color: #26B7E2;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.captcha button:hover {
+  background-color: #1a84a2;
 }
 
 .captcha p {

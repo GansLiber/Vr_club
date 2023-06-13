@@ -1,5 +1,5 @@
 <template>
-  <h3>{{ categoryName }}</h3>
+  <h3 style='color: white'>{{ categoryName }}</h3>
   <div class='categoryIn'>
     <div class='left-section' v-if='fields'>
       <kurs-admin-in-form></kurs-admin-in-form>

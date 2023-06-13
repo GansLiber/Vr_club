@@ -1,7 +1,7 @@
 <template>
   <div class='admin-panel'>
     <div class='category-list'>
-      <h2>Категории:</h2>
+      <h2 style='color: white'>Категории:</h2>
       <ul>
         <li v-for='category in categories' :key='category.value'>
           <router-link

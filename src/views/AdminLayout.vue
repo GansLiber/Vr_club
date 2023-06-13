@@ -1,6 +1,6 @@
 <template>
   <div class='main'>
-    <h1>Админ Панель</h1>
+    <h1 style='color: white'>Админ Панель</h1>
 
     <div>
       <router-view></router-view>

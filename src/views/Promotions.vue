@@ -1,5 +1,5 @@
 <template>
-
+  <h1 style='color: white'>Акции</h1>
 </template>
 
 <script>

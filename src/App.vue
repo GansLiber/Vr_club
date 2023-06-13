@@ -35,6 +35,7 @@ export default {
 <style>
 .main {
   max-width: 95em;
+  min-height: 55em;
   margin: 0 auto;
 }
 

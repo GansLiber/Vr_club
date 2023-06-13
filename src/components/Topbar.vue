@@ -4,13 +4,13 @@
       <!-- Вкладки -->
       <ul class='navbar-nav mr-auto'>
         <li class='nav-item'>
-          <a class='nav-link' href='#'>Цены</a>
+          <router-link class='nav-link' :to='`/price`'>Цены</router-link>
         </li>
         <li class='nav-item'>
-          <a class='nav-link' href='#'>Акции</a>
+          <router-link class='nav-link' :to='`/promotions`'>Акции</router-link>
         </li>
         <li class='nav-item'>
-          <a class='nav-link' href='#'>Бронь</a>
+          <router-link class='nav-link' :to='`/reservation`'>Бронь</router-link>
         </li>
         <li class='nav-item'>
           <router-link class='nav-link' :to='`/about`'>О нас</router-link>

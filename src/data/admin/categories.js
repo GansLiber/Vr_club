@@ -71,7 +71,7 @@ const categories = [
   },
   {
     value: 'rooms',
-    name: 'Комноты',
+    name: 'Комнаты',
     api: '/rooms',
     key: 'room_id',
     fields: [

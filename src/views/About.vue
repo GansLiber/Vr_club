@@ -1,6 +1,6 @@
 <template>
   <div class='main'>
-    <p>О нас</p>
+    <h1 style='color: white'>О нас</h1>
   </div>
 </template>
 
