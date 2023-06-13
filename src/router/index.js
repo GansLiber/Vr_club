@@ -11,6 +11,7 @@ import AdminCategoryItem from '@/components/adminPanel/AdminCategoryItem'
 import Reservation from '@/views/Reservation'
 import Price from '@/views/Price'
 import Promotions from '@/views/Promotions'
+import Error from '@/views/Error'
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: About,
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: Error,
   },
 
   {
@@ -96,6 +102,15 @@ const router = createRouter({
   mode: 'history',
   history: createWebHistory(process.env.BASE_URL),
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.length === 0) {
+    // Если маршрут не найден, перенаправляем на страницу ошибки
+    next({name: 'error'})
+  } else {
+    next()
+  }
 })
 
 router.beforeEach((to, from, next) => {

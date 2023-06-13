@@ -8,7 +8,8 @@
             @click='setCategoryToStorage(category)'
             :to="{
               name: 'categoryList',
-              params: {category: category.value,}}"
+              params: { category: category.value }
+            }"
             exact
           >
             {{ category.name }}
@@ -16,10 +17,8 @@
         </li>
       </ul>
     </div>
-
   </div>
 </template>
-
 
 <script>
 import categories from '@/data/admin/categories'
@@ -37,9 +36,6 @@ export default {
     setCategoryToStorage(category) {
       this.setAdminFeedToStorage({payload: category})
     }
-  },
-  computed() {
-
   }
 }
 </script>
@@ -48,6 +44,13 @@ export default {
 .admin-panel {
   margin: 0 auto;
   height: 55em;
+
+}
+
+.category-list {
+  padding: 10px;
+  width: 20%;
+  background-color: rgba(33, 32, 32, 0.8);
 }
 
 .category-list ul {
@@ -60,12 +63,11 @@ export default {
 }
 
 .category-list a {
-  color: blue;
+  color: #9d9dfd;
   text-decoration: none;
 }
 
 .category-list a:hover {
   text-decoration: underline;
 }
-
 </style>
