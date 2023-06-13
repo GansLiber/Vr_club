@@ -30,7 +30,7 @@
 <script>
 import {mask} from 'vue-the-mask'
 import KursTextMultyModal from '@/components/modalWindows/textMultyModal'
-import {mapMutations} from 'vuex'
+import {mapMutations, mapState} from 'vuex'
 
 export default {
   directives: {mask},
@@ -61,16 +61,23 @@ export default {
       }
     },
     onSubmit() {
-      this.showCapcha('dialogCapchaVisible')
-      // this.$store.dispatch('requestCall', {
-      //   name: this.name,
-      //   phone_number: this.phoneNumber
-      // }).then()
-      // this.name = ''
-      // this.phoneNumber = ''
+      if (this.capchaValid) {
+        this.$store.dispatch('requestCall', {
+          name: this.name,
+          phone_number: this.phoneNumber
+        }).then()
+        this.name = ''
+        this.phoneNumber = ''
+      } else {
+        this.showCapcha('dialogCapchaVisible')
+      }
     }
   },
-  computed: {}
+  computed: {
+    ...mapState({
+      capchaValid: state => state.dialogWindow.capchaValid
+    })
+  }
 }
 </script>
 

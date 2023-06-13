@@ -14,16 +14,13 @@ export const dialogWindow = {
       {name: 'dialogCapchaVisible', value: false},
     ],
     showWindow: false,
+    capchaValid: false,
   }),
 
   mutations: {
-    // dialog Windows
-    // clearDialogVisible(state) {
-    //   state.dialogWindows.forEach((window) => {
-    //     window.value = false
-    //   })
-    //   console.log(state.dialogWindows)
-    // },
+    submitCapcha(state, isValid) {
+      state.capchaValid = isValid
+    },
     setSingleDialogVisible(state, prop) {
       state.dialogWindows.forEach((window) => {
         window.value = window.name === prop

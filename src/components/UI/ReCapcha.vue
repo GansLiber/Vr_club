@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
+
 export default {
   name: 'kursReCapcha',
   data() {
@@ -26,6 +28,7 @@ export default {
     this.refreshCaptcha()
   },
   methods: {
+    ...mapMutations(['submitCapcha', 'setSingleDialogVisible']),
     refreshCaptcha() {
       // Генерация случайной капчи
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -46,12 +49,16 @@ export default {
       if (this.userInput === this.captchaText) {
         this.captchaValid = true
         this.captchaInvalid = false
+        this.submitCapcha(true)
+        this.setSingleDialogVisible(false)
       } else {
         this.captchaValid = false
         this.captchaInvalid = true
+        this.submitCapcha(false)
       }
     }
-  }
+  },
+  computed: {}
 }
 </script>
 

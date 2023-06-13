@@ -97,11 +97,13 @@ export const auth = {
     },
     requestCallSuccess() {
       this.commit('global/setLoading', false)
+      this.commit('submitCapcha', false)
       // окно удачной отправки
     },
     requestCallFailure(state, payload) {
       this.commit('global/setLoading', false)
       state.validationErrors = payload
+      this.commit('submitCapcha', false)
     },
   },
 
