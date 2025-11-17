@@ -1,4 +1,4 @@
-# kursa4_front
+# Vr_club SPA
 
 ## Project setup
 ```
